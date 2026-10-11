@@ -42,6 +42,48 @@ Le masque ne parle pas. Le kick, si.
 Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
 au même endroit (centre) pour qu'on le reconnaisse en scrollant.
 
+## Deux canaux, deux rôles
+
+| | YouTube | Instagram |
+|---|---|---|
+| Rôle | Catalogue : là où on écoute en entier, là où un morceau peut décoller | Dynamisme : faire parler de soi, ramener vers YouTube |
+| Format | Clip 16:9 du morceau entier (`--format youtube`) + Shorts | Reels 9:16 de 20 s |
+| Rythme | 1 clip complet par semaine, pas plus | 3 à 4 Reels par semaine |
+
+Les Reels 9:16 servent aussi de **YouTube Shorts**, sans retouche. Les Shorts sont ce qui fait
+découvrir une chaîne ; le clip complet est là où l'auditeur reste. Chaque Short renvoie au clip
+complet du même morceau (« vidéo liée » dans YouTube Studio).
+
+### Le piège : être classé « contenu produit en masse »
+
+Depuis juillet 2025, YouTube précise qu'une chaîne remplie de vidéos génériques, répétitives et
+interchangeables n'est pas monétisable. L'IA n'est pas interdite en soi : c'est l'impression de
+production à la chaîne qui est sanctionnée, et la chaîne est évaluée dans son ensemble. Avec
+4 000 morceaux, la tentation de tout publier en image fixe mène exactement là.
+
+Ce qui fait la différence :
+- **Peu et choisi.** 5 ou 6 morceaux soignés plutôt que 200. On ajoute ensuite au rythme d'un par
+  semaine, en suivant ce qui marche.
+- **Un vrai visuel animé**, qui réagit au son (c'est ce que fait le générateur), plutôt qu'une image fixe.
+- **De la personnalité dans les textes** : une description écrite par toi pour chaque morceau
+  (d'où il vient, ce qu'il raconte), et pas un modèle copié-collé.
+- **Le masque comme fil conducteur** : une identité reconnaissable donne de la cohérence à la chaîne.
+- **Transparence** : une ligne dans la description de la chaîne, « musique créée avec Suno, écrite et
+  dirigée par Kashing ». La case « contenu altéré ou synthétique » de YouTube vise surtout les contenus
+  réalistes (visages, voix de vraies personnes) ; dans le doute, la cocher ne pénalise pas la vidéo.
+
+### Les 6 premiers clips YouTube (proposition)
+
+Les plus Frenchcore et les plus forts au premier contact :
+*Here We Are*, *Ukulele Gone Bad*, *Ten Tabs Open Syndrome*, *Squirrel!*, *ANYTHING*, *Skollie Style*.
+À remplacer par ton choix : c'est toi qui connais les réactions à tes morceaux.
+
+### Sur l'objectif « décoller à la Orelsan »
+
+Un morceau viral, ça ne se planifie pas. Ce qui se planifie, c'est d'avoir assez de bons morceaux
+en ligne, bien présentés, au moment où l'un d'eux part, pour que les nouveaux venus trouvent
+une chaîne qui donne envie de rester. C'est le rôle des 5 ou 6 clips de départ.
+
 ## Genre : Frenchcore d'abord, +120 BPM ensuite
 
 - **Frenchcore**, c'est l'identité : nom affiché, hashtags principaux, et la majorité des Reels.

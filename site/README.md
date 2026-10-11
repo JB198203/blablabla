@@ -26,9 +26,13 @@ Prérequis : `ffmpeg` et Python 3 avec `numpy`.
 ## Clips Instagram
 
 ```sh
-python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --cover   # un clip
-sh tools/make_all_clips.sh                                               # tous
+python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --cover                    # un Reel
+python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --format youtube --cover   # clip YouTube
+sh tools/make_all_clips.sh                                                                # tous les Reels
 ```
+
+Le format `youtube` produit un clip 1920x1080 du morceau entier à 24 i/s (environ 9 min de calcul pour
+4 min de musique), avec une miniature 1280x720.
 
 Le script produit un Reel 1080x1920 de 20 s, calé sur le drop détecté (`--start` pour forcer le
 départ, `--duration` pour changer la longueur), plus une couverture `.jpg`. Les fichiers sortent

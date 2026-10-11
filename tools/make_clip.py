@@ -8,6 +8,7 @@ Le passage le plus énergique (le drop) est détecté automatiquement.
 Usage :
   python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3
   python3 tools/make_clip.py track.mp3 --start 62.5 --duration 15 --out clips/x.mp4
+  python3 tools/make_clip.py track.mp3 --format youtube --cover   # 16:9, morceau entier
 Options utiles : --title "TITRE", --cover (exporte aussi une image de couverture).
 """
 import argparse
@@ -22,7 +23,16 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
-W, H, FPS = 1080, 1920, 30
+# Mises en page : « reel » (Instagram / Shorts, 9:16) et « youtube » (16:9, morceau entier).
+LAYOUTS = {
+    "reel": dict(size=(1080, 1920), fps=30, mask_w=500, mask_y=470, word_y=180, word_size=190,
+                 spec_cy=1250, spec_h=80, title_y=1400, meta_y=1464, title_size=52, meta_size=30),
+    "youtube": dict(size=(1920, 1080), fps=24, mask_w=360, mask_y=225, word_y=40, word_size=120,
+                    spec_cy=790, spec_h=50, title_y=930, meta_y=990, title_size=48, meta_size=28),
+}
+L = LAYOUTS["reel"]
+W, H = L["size"]
+FPS = L["fps"]
 SR = 22050
 
 BG_TOP, BG_BOTTOM = (5, 6, 10), (12, 14, 30)
@@ -109,9 +119,12 @@ def background():
     t = np.linspace(0, 1, H)[:, None]
     arr = np.repeat((top + (bot - top) * t)[:, None, :], W, axis=1)
     img = Image.fromarray(arr.astype(np.uint8), "RGB")
-    smoke = Image.new("RGB", (W // 4, H // 4))
+    sw, sh = W // 4, H // 4
+    smoke = Image.new("RGB", (sw, sh))
     d = ImageDraw.Draw(smoke)
-    for cx, cy, r, col in [(60, 400, 90, (40, 8, 34)), (210, 420, 100, (5, 34, 42)), (135, 470, 120, (18, 20, 28))]:
+    # fumée au sol : positions relatives, pour fonctionner en 9:16 comme en 16:9
+    for fx, fy, fr, col in [(.22, .83, .33, (40, 8, 34)), (.78, .875, .37, (5, 34, 42)), (.5, .98, .44, (18, 20, 28))]:
+        cx, cy, r = fx * sw, fy * sh, fr * min(sw, sh * 0.5625)
         d.ellipse([cx - r, cy - r * .6, cx + r, cy + r * .6], fill=col)
     smoke = smoke.filter(ImageFilter.GaussianBlur(28)).resize((W, H), Image.BILINEAR)
     return ImageChops.add(img, smoke)
@@ -174,7 +187,7 @@ def fit_font(path, text, max_w, start):
 def text_layer(title, meta):
     layer = Image.new("RGBA", (W, H))
     # wordmark chromé
-    disp = fit_font(FONTS / "Unbounded.ttf", "KASHING", 880, 190)
+    disp = fit_font(FONTS / "Unbounded.ttf", "KASHING", min(880, W - 200), L["word_size"])
     bbox = disp.getbbox("KASHING")
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
     a = Image.new("L", (W, th + 40))
@@ -182,14 +195,14 @@ def text_layer(title, meta):
     word = chrome_fill(a)
     shadow = Image.new("RGBA", word.size, (0, 0, 0, 0))
     shadow.putalpha(a.filter(ImageFilter.GaussianBlur(10)))
-    layer.alpha_composite(shadow, (0, 196))
-    layer.alpha_composite(word, (0, 180))
+    layer.alpha_composite(shadow, (0, L["word_y"] + 16))
+    layer.alpha_composite(word, (0, L["word_y"]))
     # titre + infos (zone sûre : au-dessus de la légende Instagram)
-    mono = fit_font(FONTS / "JetBrainsMono.ttf", title.upper(), 900, 52)
+    mono = fit_font(FONTS / "JetBrainsMono.ttf", title.upper(), min(900, W - 180), L["title_size"])
     d = ImageDraw.Draw(layer)
-    d.text((W / 2, 1400), title.upper(), font=mono, fill=CYAN + (255,), anchor="mm")
-    small = ImageFont.truetype(str(FONTS / "JetBrainsMono.ttf"), 30)
-    d.text((W / 2, 1464), meta, font=small, fill=(150, 156, 175, 255), anchor="mm")
+    d.text((W / 2, L["title_y"]), title.upper(), font=mono, fill=CYAN + (255,), anchor="mm")
+    small = ImageFont.truetype(str(FONTS / "JetBrainsMono.ttf"), L["meta_size"])
+    d.text((W / 2, L["meta_y"]), meta, font=small, fill=(150, 156, 175, 255), anchor="mm")
     return layer
 
 
@@ -217,9 +230,9 @@ def laser_layer(t, energy):
 def spectrum(d, bands):
     n, bw, gap = len(bands), 14, 8
     x0 = (W - n * (bw + gap) + gap) / 2
-    cy = 1250
+    cy = L["spec_cy"]
     for i, v in enumerate(bands):
-        h = 6 + v * 80
+        h = 6 + v * L["spec_h"]
         t = i / (n - 1)
         col = tuple(int(CYAN[c] + (MAGENTA[c] - CYAN[c]) * t) for c in range(3))
         x = x0 + i * (bw + gap)
@@ -230,6 +243,8 @@ def spectrum(d, bands):
 
 def render(mp3, out, start, duration, title, meta, cover):
     x = decode(mp3)
+    if duration is None:  # morceau entier
+        start, duration = 0.0, len(x) / SR
     if start is None:
         start = find_drop(x, SR, duration)
     start = max(0.0, min(start, len(x) / SR - duration))
@@ -239,9 +254,9 @@ def render(mp3, out, start, duration, title, meta, cover):
     print(f"  segment {start:.1f}s → {start + duration:.1f}s, {frames} images")
 
     bg = background().convert("RGBA")
-    face, eyes, eyes_glow = mask_layers()
+    face, eyes, eyes_glow = mask_layers(L["mask_w"])
     texts = text_layer(title, meta)
-    mx, my = (W - face.width) // 2, 470
+    mx, my = (W - face.width) // 2, L["mask_y"]
 
     out.parent.mkdir(parents=True, exist_ok=True)
     cmd = ["ffmpeg", "-v", "error", "-y",
@@ -279,6 +294,8 @@ def render(mp3, out, start, duration, title, meta, cover):
     if proc.returncode:
         sys.exit(f"ffmpeg a échoué ({proc.returncode})")
     if cover and best_frame is not None:
+        if W > H:  # miniature YouTube : 1280x720, moins de 2 Mo
+            best_frame = best_frame.resize((1280, 720), Image.LANCZOS)
         best_frame.save(out.with_suffix(".jpg"), quality=92)
     return start
 
@@ -301,17 +318,25 @@ def main():
     ap.add_argument("mp3", type=Path)
     ap.add_argument("--out", type=Path)
     ap.add_argument("--start", type=float, help="début en secondes (sinon : drop détecté)")
-    ap.add_argument("--duration", type=float, default=20)
+    ap.add_argument("--duration", type=float, help="durée en secondes (défaut : 20 s en reel, morceau entier en youtube)")
+    ap.add_argument("--format", choices=LAYOUTS, default="reel",
+                    help="reel = 1080x1920 (Instagram, Shorts) ; youtube = 1920x1080, morceau entier")
     ap.add_argument("--title")
     ap.add_argument("--handle", default="@kashing")
     ap.add_argument("--cover", action="store_true", help="exporte aussi une couverture .jpg")
     a = ap.parse_args()
+    global L, W, H, FPS
+    L = LAYOUTS[a.format]
+    W, H = L["size"]
+    FPS = L["fps"]
+    duration = a.duration if a.duration else (None if a.format == "youtube" else 20)
 
     title, bpm = track_info(a.mp3)
     title = a.title or title or a.mp3.stem
     meta = " · ".join(filter(None, [f"{bpm} BPM" if bpm else None, a.handle]))
-    out = a.out or ROOT / "clips" / (a.mp3.stem + ".mp4")
-    start = render(a.mp3, out, a.start, a.duration, title, meta, a.cover)
+    suffix = "" if a.format == "reel" else "_youtube"
+    out = a.out or ROOT / "clips" / (a.mp3.stem + suffix + ".mp4")
+    start = render(a.mp3, out, a.start, duration, title, meta, a.cover)
     print(f"  → {out}  (début {start:.1f}s)")
 
 
