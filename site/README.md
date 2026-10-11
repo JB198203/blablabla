@@ -52,7 +52,7 @@ simulé au lieu d'analyser le son.
 |---|---|
 | Email `contact@kashstudio.fr` | `index.html` (formulaire + footer) |
 | Lien Instagram `@kashing` | `index.html` |
-| Prix Kash Studio | section `#studio` |
+| Prix Kash Studio (« sur devis » pour l'instant) | section `#studio` |
 
 ## Hébergement
 
