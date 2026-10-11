@@ -53,10 +53,10 @@ def peaks(x):
     return [round(float(v), 3) for v in p]
 
 
-def estimate_bpm(x, rate=4000, lo=140, hi=240):
+def estimate_bpm(x, rate=4000, lo=120, hi=240):
     """Tempo approximatif par autocorrélation de l'enveloppe d'attaques.
 
-    Plage limitée à 140–240 BPM (hardcore / frenchcore) pour éviter les
+    Plage limitée à 120–240 BPM (hardbass → frenchcore) pour éviter les
     erreurs de demi-tempo ; les multiples (2 et 4 temps) renforcent le bon
     candidat. Précision ~±2 BPM : à corriger à la main dans tracks.js si besoin.
     """
