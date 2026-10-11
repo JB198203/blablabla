@@ -2705,7 +2705,7 @@ window.TRACKS = [
  {
   "title": "Enter the Xirtam",
   "key": null,
-  "focus": true,
+  "focus": false,
   "versions": [
    {
     "file": "13_Enter_the_xirtam.mp3",

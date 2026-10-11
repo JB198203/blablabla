@@ -72,11 +72,11 @@ Ce qui fait la différence :
   dirigée par Kashing ». La case « contenu altéré ou synthétique » de YouTube vise surtout les contenus
   réalistes (visages, voix de vraies personnes) ; dans le doute, la cocher ne pénalise pas la vidéo.
 
-### Les 6 premiers clips YouTube (proposition)
+### Les 6 premiers clips YouTube
 
 Les plus Frenchcore et les plus forts au premier contact :
-*Here We Are*, *Ukulele Gone Bad*, *Ten Tabs Open Syndrome*, *Squirrel!*, *ANYTHING*, *Skollie Style*.
-À remplacer par ton choix : c'est toi qui connais les réactions à tes morceaux.
+*Sugar Spike Blues* (version longue), *Here We Are*, *Ukulele Gone Bad*, *Ten Tabs Open Syndrome*,
+*Squirrel!*, *ANYTHING*.
 
 ### Sur l'objectif « décoller à la Orelsan »
 
