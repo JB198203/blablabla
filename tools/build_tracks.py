@@ -7,6 +7,8 @@ durée et forme d'onde (peaks). Les champs édités à la main dans tracks.js
 
 Usage : python3 tools/build_tracks.py
 Ordre de la playlist : alphabétique par nom de fichier (préfixer 01_, 02_...).
+Versions : « 04_Squirrel.mp3 » et « 04_Squirrel_1.mp3 » forment un seul morceau
+avec deux versions (sélecteur V1 / V2 dans le lecteur).
 """
 import json
 import re
@@ -20,7 +22,6 @@ ROOT = Path(__file__).resolve().parent.parent
 AUDIO = ROOT / "site" / "audio"
 OUT = AUDIO / "tracks.js"
 PEAKS = 180
-KEEP = ("title", "bpm", "key")
 
 
 def probe(path):
@@ -88,46 +89,60 @@ def title_from(path, tags):
     return clean_title(tags.get("title") or "") or clean_title(path.stem) or path.stem
 
 
+def group_key(path):
+    """« 04_Squirrel_1.mp3 » → (« 04_Squirrel », 1) : les suffixes _1, _2… sont d'autres versions Suno."""
+    m = re.match(r"^(.*?)_(\d)$", path.stem)
+    return (m.group(1), int(m.group(2))) if m else (path.stem, 0)
+
+
 def load_existing():
+    """Champs édités à la main, indexés par fichier (titre/key du morceau, bpm de la version)."""
     if not OUT.exists():
         return {}
     txt = OUT.read_text(encoding="utf-8")
     m = re.search(r"window\.TRACKS\s*=\s*(\[.*\]);?\s*$", txt, re.S)
+    out = {}
     try:
-        return {t["file"]: t for t in json.loads(m.group(1))} if m else {}
-    except (json.JSONDecodeError, KeyError):
+        for t in json.loads(m.group(1)) if m else []:
+            for v in t.get("versions", [t]):
+                out[v["file"]] = {"title": t.get("title"), "key": t.get("key"), "bpm": v.get("bpm")}
+    except (json.JSONDecodeError, KeyError, TypeError):
         return {}
+    return out
 
 
 def main():
-    files = sorted(AUDIO.glob("*.mp3"), key=lambda p: p.name.lower())
+    files = sorted(AUDIO.glob("*.mp3"), key=lambda p: group_key(p))
     existing = load_existing()
-    tracks = []
+    groups = {}
     for f in files:
         duration, tags = probe(f)
         x = decode(f)
         bpm = tags.get("tbpm") or tags.get("bpm")
-        t = {
+        old = existing.get(f.name, {})
+        v = {
             "file": f.name,
-            "title": title_from(f, tags),
-            "bpm": int(float(bpm)) if bpm and bpm.replace(".", "").isdigit() else estimate_bpm(x),
-            "key": tags.get("initialkey") or tags.get("tkey"),
+            "bpm": old.get("bpm") or (int(float(bpm)) if bpm and bpm.replace(".", "").isdigit() else estimate_bpm(x)),
             "duration": round(duration, 2),
             "peaks": peaks(x),
         }
-        old = existing.get(f.name, {})
-        for k in KEEP:
-            if old.get(k):
-                t[k] = old[k]
-        tracks.append(t)
-        print(f"  {f.name:40s} {t['title'][:30]:30s} {t['bpm'] or '-':>4} BPM  {duration:6.1f}s")
+        base, _ = group_key(f)
+        t = groups.setdefault(base, {
+            "title": old.get("title") or title_from(f, tags),
+            "key": old.get("key") or tags.get("initialkey") or tags.get("tkey"),
+            "versions": [],
+        })
+        t["versions"].append(v)
+        print(f"  {f.name:42s} {t['title'][:30]:30s} {v['bpm'] or '-':>4} BPM  {duration:6.1f}s")
 
+    tracks = list(groups.values())
     OUT.write_text(
-        "// Généré par tools/build_tracks.py — title, bpm et key peuvent être édités à la main.\n"
+        "// Généré par tools/build_tracks.py — title, key et bpm peuvent être édités à la main.\n"
         "window.TRACKS = " + json.dumps(tracks, ensure_ascii=False, indent=1) + ";\n",
         encoding="utf-8",
     )
-    print(f"{len(tracks)} tracks → {OUT.relative_to(ROOT)}")
+    n = sum(len(t["versions"]) for t in tracks)
+    print(f"{len(tracks)} morceaux ({n} fichiers) → {OUT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

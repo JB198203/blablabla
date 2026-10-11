@@ -290,8 +290,9 @@ def track_info(mp3):
         txt = js.read_text(encoding="utf-8")
         data = json.loads(txt[txt.index("["): txt.rindex("]") + 1])
         for t in data:
-            if t["file"] == Path(mp3).name:
-                return t.get("title"), t.get("bpm")
+            for v in t.get("versions", [t]):
+                if v["file"] == Path(mp3).name:
+                    return t.get("title"), v.get("bpm")
     return None, None
 
 

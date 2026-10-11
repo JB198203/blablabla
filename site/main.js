@@ -12,6 +12,8 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   let current = -1;
+  // Un morceau peut avoir plusieurs versions Suno ; t.v = version choisie.
+  const V = (t) => t.versions[t.v || 0];
 
   const fmt = (s) => {
     if (!isFinite(s)) return '0:00';
@@ -28,23 +30,33 @@
     const li = document.createElement('li');
     const b = document.createElement('button');
     b.type = 'button';
+    const v = V(t);
     b.innerHTML = `<span class="pl-n">${String(i + 1).padStart(2, '0')}</span>
       <span class="pl-title"></span>
-      <span class="pl-bpm">${t.bpm ? t.bpm + ' BPM' : ''}</span>
-      <span class="pl-dur">${fmt(t.duration)}</span>`;
+      <span class="pl-bpm">${v.bpm ? v.bpm + ' BPM' : ''}</span>
+      <span class="pl-dur">${fmt(v.duration)}</span>`;
     b.querySelector('.pl-title').textContent = t.title;
+    if (t.versions.length > 1) {
+      const tag = document.createElement('span');
+      tag.className = 'pl-ver';
+      tag.textContent = `${t.versions.length} versions`;
+      b.querySelector('.pl-title').appendChild(tag);
+    }
     b.addEventListener('click', () => (i === current ? toggle() : load(i, true)));
     li.appendChild(b);
     playlist.appendChild(li);
   });
 
-  function load(i, autoplay) {
+  function load(i, autoplay, startAt = 0) {
     if (!tracks.length) return;
     current = (i + tracks.length) % tracks.length;
     const t = tracks[current];
-    audio.src = 'audio/' + encodeURIComponent(t.file);
+    const v = V(t);
+    audio.src = 'audio/' + encodeURIComponent(v.file);
+    if (startAt) audio.addEventListener('loadedmetadata', () => { audio.currentTime = Math.min(startAt, audio.duration - 1); }, { once: true });
     $('nowTitle').textContent = t.title;
-    $('nowMeta').textContent = [t.bpm && `${t.bpm} BPM`, t.key, fmt(t.duration)].filter(Boolean).join(' · ');
+    $('nowMeta').textContent = [v.bpm && `${v.bpm} BPM`, t.key, fmt(v.duration)].filter(Boolean).join(' · ');
+    renderVersions(t);
     [...playlist.children].forEach((li, n) => li.classList.toggle('is-current', n === current));
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -54,6 +66,28 @@
     }
     drawWave();
     if (autoplay) play();
+  }
+
+  // Sélecteur V1 / V2 : garde la position pour comparer les versions à l'oreille.
+  function renderVersions(t) {
+    const box = $('versions');
+    box.replaceChildren();
+    box.hidden = t.versions.length < 2;
+    t.versions.forEach((_, n) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ver' + (n === (t.v || 0) ? ' is-on' : '');
+      b.textContent = `V${n + 1}`;
+      b.setAttribute('aria-pressed', String(n === (t.v || 0)));
+      b.setAttribute('aria-label', `Version ${n + 1}`);
+      b.addEventListener('click', () => {
+        if (n === (t.v || 0)) return;
+        const wasPlaying = !audio.paused;
+        t.v = n;
+        load(current, wasPlaying, audio.currentTime);
+      });
+      box.appendChild(b);
+    });
   }
 
   function play() {
@@ -74,7 +108,7 @@
   audio.addEventListener('pause', () => { playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', 'Lecture'); });
   audio.addEventListener('ended', () => load(current + 1, true));
   audio.addEventListener('timeupdate', () => {
-    $('time').textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration || tracks[current]?.duration)}`;
+    $('time').textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration || (tracks[current] && V(tracks[current]).duration))}`;
     if (reduceMotion) drawWave();
   });
 
@@ -90,8 +124,8 @@
     const h = (wave.height = wave.clientHeight * dpr);
     wg.clearRect(0, 0, w, h);
     const t = tracks[current];
-    if (!t || !t.peaks || !t.peaks.length) return;
-    const peaks = t.peaks;
+    const peaks = t && V(t).peaks;
+    if (!peaks || !peaks.length) return;
     const progress = audio.duration ? audio.currentTime / audio.duration : 0;
     const bw = w / peaks.length;
     const grad = wg.createLinearGradient(0, 0, w, 0);
@@ -139,7 +173,7 @@
         for (let i = 1; i < 8; i++) sum += bins[i]; // ~40–350 Hz : le kick
         target = Math.max(0, (sum / 7 - 120) / 135);
       } else {
-        const bpm = tracks[current]?.bpm || 200;
+        const bpm = (tracks[current] && V(tracks[current]).bpm) || 200;
         target = Math.exp(-((audio.currentTime * bpm / 60) % 1) * 6);
       }
       drawWave();
