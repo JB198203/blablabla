@@ -56,19 +56,27 @@ def estimate_bpm(x, rate=4000, lo=140, hi=240):
     """Tempo approximatif par autocorrélation de l'enveloppe d'attaques.
 
     Plage limitée à 140–240 BPM (hardcore / frenchcore) pour éviter les
-    erreurs de demi-tempo. À corriger à la main dans tracks.js si besoin.
+    erreurs de demi-tempo ; les multiples (2 et 4 temps) renforcent le bon
+    candidat. Précision ~±2 BPM : à corriger à la main dans tracks.js si besoin.
     """
-    hop = 40  # 10 ms
+    hop = 8  # 2 ms
     n = len(x) // hop
-    if n < 1000:
+    if n < 5000:
         return None
     env = np.sqrt((x[: n * hop].reshape(n, hop) ** 2).mean(axis=1))
+    env = np.convolve(env, np.ones(5) / 5, "same")
     onset = np.maximum(np.diff(env), 0)
     onset -= onset.mean()
     fps = rate / hop
-    lags = np.arange(int(fps * 60 / hi), int(fps * 60 / lo) + 1)
-    ac = np.array([np.dot(onset[:-l], onset[l:]) for l in lags])
-    return int(round(60 * fps / lags[ac.argmax()]))
+    ac = lambda l: np.dot(onset[:-l], onset[l:])
+    lags = np.arange(int(fps * 60 / hi), int(fps * 60 / lo) + 2)
+    score = np.array([ac(l) + 0.5 * ac(2 * l) + 0.5 * ac(4 * l) for l in lags])
+    i = int(score.argmax())
+    d = 0.0
+    if 0 < i < len(score) - 1:
+        a, b, c = score[i - 1: i + 2]
+        d = 0.5 * (a - c) / (a - 2 * b + c)
+    return int(round(60 * fps / (lags[i] + d)))
 
 
 def clean_title(s):
