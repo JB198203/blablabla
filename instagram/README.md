@@ -42,6 +42,23 @@ Le masque ne parle pas. Le kick, si.
 Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
 au même endroit (centre) pour qu'on le reconnaisse en scrollant.
 
+## Fil rouge discret : « ça sonne comme dans ma tête »
+
+Plusieurs tracks parlent du TDAH (*Executive Dysfunction*, *Dopamine Chase*, *Squirrel!*,
+*Ten Tabs Open Syndrome*, *Masking Tape*, *Sugar Spike Blues*). On ne l'annonce jamais :
+pas de « musique pour TDAH », pas d'explication. Les titres et les légendes suffisent pour
+que ceux qui le vivent se reconnaissent.
+
+- Légendes en clins d'œil : « 10 onglets ouverts, 1 seul kick. », « J'étais venu pour quoi déjà ? Squirrel! »,
+  « Dopamine trouvée à 200 BPM. »
+- Si quelqu'un pose la question en commentaire : réponse courte et sincère, en privé ou en story,
+  jamais un post « campagne de sensibilisation ».
+- Pas de noms de médicaments dans les posts publics. Dans un contexte rave, une blague sur un
+  stimulant peut être lue comme une incitation et faire signaler le compte. Elle peut rester dans le
+  morceau, mais pas dans la légende.
+- Les Reels de cette série gardent la même direction visuelle que les autres. C'est le son et
+  les titres qui portent le sujet, pas l'image.
+
 ## Campagne « SOUS LE MASQUE » — 6 semaines
 
 ### Semaine 1 : teasing (aucune musique)
