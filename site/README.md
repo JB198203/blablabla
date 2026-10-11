@@ -1,44 +1,55 @@
-# Site KIKFORGE — ghost production Frenchcore
+# Site KASHING (+ Kash Studio)
 
-Site statique d'une page (HTML/CSS/JS, aucune dépendance ni build).
+Site statique d'une page (HTML/CSS/JS, aucun build). Direction visuelle : chrome & laser,
+personnage masqué.
+
+## Sections
+
+- **Hero** : le masque chromé (`mask.svg`) et des lasers qui réagissent au son de la track en cours.
+- **Musique** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
+- **Le masque** : le texte sur l'anonymat de l'artiste.
+- **Kash Studio** : la ghost production (process, offres).
+- **Contact** : booking ou brief.
+
+## Ajouter des tracks
+
+1. Déposer les MP3 dans `site/audio/`. L'ordre suit le nom de fichier : préfixer avec `01_`, `02_`…
+2. Lancer `python3 tools/build_tracks.py`. Le script écrit `site/audio/tracks.js` avec le titre, le BPM
+   (lu dans le tag du fichier ou estimé), la durée et la forme d'onde.
+3. On peut corriger à la main `title`, `bpm` et `key` dans `tracks.js` : ces corrections sont
+   conservées au prochain passage du script.
+
+Prérequis : `ffmpeg` et Python 3 avec `numpy`.
+
+## Clips Instagram
+
+```sh
+python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --cover   # un clip
+sh tools/make_all_clips.sh                                               # tous
+```
+
+Le script produit un Reel 1080x1920 de 20 s, calé sur le drop détecté (`--start` pour forcer le
+départ, `--duration` pour changer la longueur), plus une couverture `.jpg`. Les fichiers sortent
+dans `clips/`, qui n'est pas versionné.
 
 ## Lancer en local
-
-Ouvrir `index.html` dans un navigateur, ou :
 
 ```sh
 python3 -m http.server -d site 8000
 ```
 
-## Le contenu
-
-- **Hero** : accroche + bouton « Tester le kick ». Il joue un kick frenchcore synthétisé en Web Audio à
-  200 BPM (aucun fichier audio) et anime un oscilloscope.
-- **Process** en 4 étapes, **Offres** (Exclusive / Sur mesure / Pack identité), **Catalogue**
-  exclusif, **Garanties**, **FAQ**, **Formulaire de brief**.
+En ouvrant directement `index.html` (file://), la musique joue, mais les lasers suivent un tempo
+simulé au lieu d'analyser le son.
 
 ## À remplacer avant la mise en ligne
 
 | Quoi | Où |
 |---|---|
-| Nom `KIKFORGE` (provisoire) | `index.html` (logo, titre, footer) |
-| Email `contact@kikforge.fr` | `index.html` (formulaire + footer) |
-| Prix (290 € / 590 €) | section `#offres` |
-| Tracks du catalogue (fictives) | section `#catalogue` |
-| Lien Instagram | footer |
-
-Le formulaire utilise `mailto:` (ouvre le client mail). Pour un vrai envoi, brancher Formspree,
-Netlify Forms ou une fonction serverless.
+| Email `contact@kashstudio.fr` | `index.html` (formulaire + footer) |
+| Lien Instagram `@kashing` | `index.html` |
+| Prix Kash Studio | section `#studio` |
 
 ## Hébergement
 
-Dossier `site/` déployable tel quel sur GitHub Pages, Netlify ou Vercel.
-
-## Références utilisées
-
-- [Impeccable](https://github.com/pbakaus/impeccable) : règles anti-« AI slop » (pas de dégradés
-  violets, pas de cartes imbriquées, accroches précises, un CTA principal par section).
-- Site de [Dr. Peacock](https://www.dr-peacock.com) : sorties, tournée, store, Harderclass.
-  Il ne fait rien de spécifique au ghost production, qui reste à inventer.
-- [Awwwards — Sound & Audio](https://www.awwwards.com/websites/sound-audio/) : typo massive,
-  fond sombre, interaction sonore.
+Le dossier `site/` se déploie tel quel (GitHub Pages, Netlify, Vercel). 30 MP3 à environ 6 Mo
+font environ 180 Mo : ça passe sur GitHub, sans marge énorme.

@@ -1,110 +1,159 @@
-# Kit Instagram — KIKFORGE
+# Campagne Instagram — KASHING
 
-> Je ne peux pas créer ni piloter un compte Instagram moi-même : la création exige une vérification
-> par téléphone/email, et les CGU de Meta interdisent les comptes créés ou opérés par des bots.
-> Ce kit te permet de créer le compte en 10 minutes ; ensuite je peux rédiger les posts,
-> légendes et le planning, et tu les publies (ou tu les programmes via Meta Business Suite).
+> Je ne peux pas créer ni piloter le compte Instagram moi-même : la création exige une vérification
+> par téléphone ou par email, et les règles de Meta interdisent les comptes créés ou gérés par des bots.
+> Je produis les clips, les visuels, les légendes et le planning. Tu publies, ou tu programmes
+> les posts avec Meta Business Suite (gratuit).
 
-## Le problème à garder en tête
+## Positionnement
 
-Un ghost producer vend de la **discrétion**. Tu ne peux pas montrer « j'ai fait la track de X ».
-Le compte doit donc vendre le **savoir-faire** (kicks, sound design, avant/après de mix),
-jamais les clients.
+- **KASHING** est l'artiste : Frenchcore, masque chromé, anonyme. C'est lui qu'on fait connaître.
+- **Kash Studio** est l'atelier de ghost production. Il apparaît sur le site, pas dans le fil
+  Instagram : un compte artiste qui vend des tracks à d'autres brouille le message. On en reparle quand
+  KASHING aura une audience.
 
 ## Profil
 
-- **Handle** : `@kikforge` (alternatives : `@kikforge.studio`, `@kikforge_ghost`)
-- **Nom affiché** : `KIKFORGE · Ghost Production Frenchcore` (le champ nom est indexé par la recherche)
-- **Catégorie** : Studio d'enregistrement / Producteur de musique
-- **Compte** : Professionnel (pour les stats et la programmation)
-- **Photo de profil** : logo `KIK` blanc + `FORGE` rouge sur fond noir, centré, lisible en 110 px
-- **Bio** (150 caractères max) :
+- **Handle** : `@kashing` (à vérifier, sinon `@kashing.fc`, `@kashing_frenchcore`)
+- **Nom affiché** : `KASHING · Frenchcore` (ce champ est pris en compte par la recherche Instagram)
+- **Type de compte** : Professionnel, catégorie « Artiste »
+- **Photo de profil** : le masque seul, yeux cyan, sur fond noir (`site/mask.svg`)
+- **Bio** :
 
 ```
-Ghost production Frenchcore · Uptempo · Hardcore
-Ta track. Ton nom. Notre kick. 🔴
-NDA + droits 100 % cédés
-↓ Brief en 24 h
+Frenchcore 🎭 visage inconnu
+Le masque ne parle pas. Le kick, si.
+↓ 30 tracks en écoute
 ```
 
-- **Lien** : le site (ancre `#contact`)
-- **Stories à la une** : `Process` · `Kicks` · `Avant/Après` · `FAQ` · `Tarifs`
+- **Lien** : le site
+- **Stories à la une** : `Tracks` · `Le masque` · `Coulisses` · `Dates`
 
-## Charte visuelle (identique au site)
+## Charte (identique au site et aux clips)
 
 | Élément | Valeur |
 |---|---|
-| Fond | `#0a0a0a` |
-| Texte | `#f2f0ea` |
-| Accent | `#ff2a2a` (rouge), `#2b4bff` en touche rare |
-| Titres | Anton, majuscules |
-| Infos techniques | JetBrains Mono |
+| Fond | noir bleuté `#05060a` |
+| Accents | cyan `#22e8ff`, magenta `#ff2bd6` |
+| Logo | KASHING en chrome, police Unbounded Black |
+| Infos | JetBrains Mono (titre, BPM) |
+| Personnage | le masque, présent dans **chaque** visuel |
 
-Règle : un seul message par visuel, 6 mots max en titre.
+Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
+au même endroit (centre) pour qu'on le reconnaisse en scrollant.
 
-## Grille de lancement (9 posts = 3 lignes)
+## Campagne « SOUS LE MASQUE » — 6 semaines
 
-Publiés du 9 au 1 pour que la grille se lise dans l'ordre.
+### Semaine 1 : teasing (aucune musique)
+| Jour | Format | Contenu |
+|---|---|---|
+| L | 3 posts en mosaïque | Le masque découpé sur 3 posts côte à côte, qui forment une seule image dans la grille |
+| Me | Reel 7 s | Écran noir, un kick, les yeux du masque s'allument. Texte : « Bientôt. » |
+| V | Reel 10 s | Lasers qui balayent, le masque apparaît. Texte : « Personne ne sait qui c'est. » |
+| Stories | quotidien | Sondage « Frenchcore ou Uptempo ? », compte à rebours vers le lancement |
 
-| # | Format | Contenu | Accroche |
-|---|---|---|---|
-| 1 | Image | Manifeste typographique | « TA TRACK. TON NOM. NOTRE KICK. » |
-| 2 | Reel 15 s | Design d'un kick de zéro, écran DAW + son | « Un kick frenchcore en 15 secondes » |
-| 3 | Carrousel | Les 4 étapes du process | « Du brief au drop » |
-| 4 | Reel | Avant/après mix sur un drop (track du catalogue) | « Même track. Mix différent. » |
-| 5 | Image | « 100 % des droits. NDA. Une seule vente. » | Les garanties |
-| 6 | Reel | Screech / lead : 3 variations sur le même riff | « Lequel tu joues ? » (sondage en story) |
-| 7 | Carrousel | Mythes du ghost production | « Non, ce n'est pas tricher » |
-| 8 | Reel | Extrait catalogue KF-031 avec waveform | « Disponible. Une seule fois. » |
-| 9 | Image | Appel au brief | « Envoie ton brief. Réponse en 24 h. » |
+### Semaines 2 et 3 : lancement
+- **4 Reels visualizer par semaine** (lun, mer, ven, dim, entre 18 h et 20 h), chacun sur le drop d'une track.
+- Ordre : les 3 tracks les plus fortes d'abord. Garde-les pour l'ouverture, pas pour la fin.
+- Chaque Reel renvoie au site (« track complète en bio »).
 
-## Rythme ensuite
+### Semaines 4 et 5 : engagement
+- **« Qui est KASHING ? »** : un indice par semaine en story (ville, DAW, première track).
+  Le mystère alimente la curiosité, mais ne révèle jamais rien.
+- **Défi kick** : un Reel où le kick est isolé, puis « fais ton edit et identifie @kashing ».
+  On repartage les meilleures réponses.
+- Contacter 5 à 10 **pages de repost Frenchcore et Uptempo** en leur envoyant le meilleur clip.
+  C'est le levier de portée le plus rentable sur cette niche.
 
-- **3 Reels / semaine** (lundi, mercredi, vendredi, 18 h–20 h) : sound design, avant/après, extraits catalogue
-- **1 carrousel / semaine** : pédagogie (structure d'un drop frenchcore, chaîne de distorsion du kick…)
-- **Stories quotidiennes** : coulisses session, sondages « kick A ou B », sorties catalogue
-- Le Reel est le format qui donne de la portée ; le carrousel sert à convertir.
+### Semaine 6 : clips IA
+- Sortie des 2 ou 3 clips IA (voir plus bas) sur les tracks qui ont le mieux marché en semaines 2 à 5.
+
+### Ensuite
+- 3 Reels par semaine. Les 30 tracks donnent environ 10 semaines de contenu sans répétition,
+  puis on refait des Reels sur d'autres passages des tracks qui ont marché.
+
+## Ce qu'on mesure
+
+- **Partages et enregistrements** par Reel, pas les likes. C'est ce qui pousse un Reel dans l'algorithme.
+- **Taux de visionnage complet** : si les gens décrochent avant le drop, il faut commencer le clip plus tard.
+- Au bout de 2 semaines, on garde les 3 tracks qui partagent le plus et on fait plus de contenu sur elles.
+- Optionnel : sponsoriser à 5 €/jour le Reel qui a le mieux marché sans pub au bout de 48 h.
+  Ne jamais acheter de followers.
+
+## Direction des clips
+
+### Format A — Visualizer automatique (pour toutes les tracks)
+Généré avec `tools/make_clip.py` : 1080x1920, 20 s, démarre sur le drop.
+- La première seconde doit déjà frapper : on commence **sur** le drop, pas avant.
+- Titre et BPM restent au-dessus de la zone couverte par la légende Instagram.
+- Couverture du Reel : l'image `.jpg` exportée avec `--cover`.
+- Si la détection du drop se trompe (master très compressé) : `--start 62.5`.
+
+### Format B — Clips IA (2 ou 3 tracks phares)
+Outils : Runway, Kling, Luma ou Sora (abonnement de ton côté). Je ne peux pas générer
+la vidéo moi-même, j'écris les prompts et le découpage.
+
+**Fiche personnage, à coller en tête de chaque prompt pour que le masque reste identique d'un plan à l'autre :**
+```
+A mysterious masked DJ. Smooth oval chrome mask, mirror-polished, a dark horizontal
+reflection band at eye level, two angular slit eyes glowing bright cyan (#22e8ff),
+a thin vertical seam down the middle, three short horizontal slots as a mouth.
+Black hooded jacket, black gloves, no skin visible. Never shows a face.
+```
+Ajouter une image de référence du masque (export de `site/mask.svg` ou la couverture d'un clip)
+pour les outils qui l'acceptent.
+
+**Clip 1 — « Rave en entrepôt »** (15 à 20 s, sur le drop)
+1. `[personnage] standing still in a dark concrete warehouse, thick haze, cyan and magenta laser beams fanning from the ceiling, slow push-in, cinematic, 35mm`
+2. `close-up of the chrome mask, laser reflections sliding across it, eyes flare cyan on each beat`
+3. `wide shot from behind the masked DJ facing a crowd, hands raised, strobe light, lasers sweeping`
+4. `extreme close-up, gloved hand slamming a fader on a DJ mixer, sparks of light`
+
+**Clip 2 — « Autoroute de nuit »**
+1. `[personnage] in the passenger seat of a car on a French highway at night, orange tunnel lights strobing across the chrome mask`
+2. `POV through windshield, tunnel lights turning into cyan and magenta laser streaks, speed`
+3. `the mask turns slowly to camera, eyes ignite`
+
+**Clip 3 — « Le masque se forge »**
+1. `molten liquid chrome pouring in slow motion on black background, forming an oval mask`
+2. `the chrome mask cooling, two slit eyes cut by a cyan laser`
+3. `the finished mask floating in haze, eyes glowing, laser beams behind`
+
+**Montage** (CapCut ou Premiere) : à 200 BPM, un temps dure 0,3 s. On coupe tous les 4 temps (1,2 s)
+et sur chaque kick fort pendant le drop. Les plans IA sont mis à l'échelle de la track,
+jamais l'inverse. On termine sur le masque, yeux allumés, avec « KASHING » en chrome.
+
+**Obligation** : Instagram demande d'activer l'étiquette « IA » pour les contenus réalistes générés
+par IA. On l'active systématiquement : c'est une règle de la plateforme, et la découverte après coup
+coûte plus cher que la transparence.
 
 ## Légendes types
 
-**Reel kick design**
+**Reel visualizer**
 ```
-Kick frenchcore de zéro : sine → pitch envelope → distorsion → EQ → re-distorsion.
-200 BPM, 15 secondes.
-Tu veux le tien, signé à ton nom ? Brief en bio.
-#frenchcore #kickdesign #ghostproducer #hardcoremusic #uptempo #producerlife #flstudio
+SUGAR SPIKE BLUES — 188 BPM
+Le masque ne parle pas. Le kick, si.
+Track complète en bio.
+#frenchcore #frenchcoremusic #uptempo #hardcoremusic #rave #kashing
 ```
 
-**Carrousel garanties**
+**Teasing**
 ```
-Ce que tu signes chez nous :
-→ 100 % des droits cédés par contrat
-→ NDA avant le premier fichier
-→ Une track exclusive n'est jamais revendue
-→ Stems livrés
-On ne cite jamais nos clients. Jamais.
-#ghostproduction #frenchcore #edmproducer #hardcore
+Personne ne sait qui c'est.
+Bientôt.
+#frenchcore #hardcore #rave
 ```
 
 ## Hashtags (5 à 8 par post, à faire tourner)
 
-- Niche : `#frenchcore` `#frenchcoremusic` `#uptempo` `#terrorcore` `#hardcoremusic` `#raw`
-- Métier : `#ghostproducer` `#ghostproduction` `#kickdesign` `#sounddesign` `#mixingandmastering`
-- Outils : `#flstudio` `#ableton` `#producerlife`
+- Niche : `#frenchcore` `#frenchcoremusic` `#uptempo` `#terrorcore` `#hardcoremusic` `#hardcore`
+- Ambiance : `#rave` `#raveculture` `#lasershow` `#techno`
+- Marque : `#kashing` (sur tous les posts)
 
-## Ce qu'il faut éviter
-
-- Acheter des followers : ça tue la portée et les DJ le repèrent.
-- Montrer des noms de clients ou des projets livrés : ça détruit la promesse de confidentialité.
-- Utiliser des samples de tracks d'artistes connus dans les Reels (droits + crédibilité).
-
-## Automatisation (si tu veux aller plus loin)
+## Automatisation
 
 - [`Jakeschincariol/instagram-agent-skill`](https://github.com/Jakeschincariol/instagram-agent-skill) :
-  skills Claude pour rédiger hooks, légendes et faire de la veille. C'est l'option raisonnable :
-  ça écrit, tu publies.
-- Les agents qui **publient seuls** via automatisation de navigateur (« anti-detection », etc.)
-  violent les CGU d'Instagram et exposent le compte à un ban. Je les déconseille pour un compte
-  qui porte ton business.
-- Pour programmer légalement : Meta Business Suite (gratuit) ou l'API Instagram Graph avec un
-  compte pro.
+  des skills Claude pour écrire les accroches et les légendes. Il écrit, tu publies : c'est l'option raisonnable.
+- Les agents qui **publient tout seuls** en contournant les détections d'Instagram violent ses règles et
+  exposent le compte à un ban. Je les déconseille.
+- Pour programmer les posts sans risque : Meta Business Suite.
