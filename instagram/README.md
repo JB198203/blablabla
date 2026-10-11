@@ -21,7 +21,7 @@
 - **Bio** :
 
 ```
-Frenchcore 🎭 visage inconnu
+Frenchcore & +120 BPM 🎭 visage inconnu
 Le masque ne parle pas. Le kick, si.
 ↓ 30 tracks en écoute
 ```
@@ -41,6 +41,14 @@ Le masque ne parle pas. Le kick, si.
 
 Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
 au même endroit (centre) pour qu'on le reconnaisse en scrollant.
+
+## Genre : Frenchcore d'abord, +120 BPM ensuite
+
+- **Frenchcore**, c'est l'identité : nom affiché, hashtags principaux, et la majorité des Reels.
+- **+120 BPM**, c'est l'ouverture : hardbass, funk, tribal, carnaval. Ces morceaux sortent ponctuellement
+  (environ 1 Reel sur 4) pour que le fil reste lisible.
+- Les hashtags suivent le morceau (`#hardbass` pour *Nuit à Moscou*, `#funk` pour *Baile da Gaiola*),
+  mais `#frenchcore` et `#kashing` restent sur tous les posts Frenchcore.
 
 ## Fil rouge discret : « ça sonne comme dans ma tête »
 
