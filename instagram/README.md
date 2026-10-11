@@ -21,7 +21,7 @@
 - **Bio** :
 
 ```
-Frenchcore & +120 BPM 🎭 visage inconnu
+Frenchcore · Hardbass · Trance 🎭 visage inconnu
 Le masque ne parle pas. Le kick, si.
 ↓ 30 tracks en écoute
 ```
@@ -84,13 +84,16 @@ Un morceau viral, ça ne se planifie pas. Ce qui se planifie, c'est d'avoir asse
 en ligne, bien présentés, au moment où l'un d'eux part, pour que les nouveaux venus trouvent
 une chaîne qui donne envie de rester. C'est le rôle des 5 ou 6 clips de départ.
 
-## Genre : Frenchcore d'abord, +120 BPM ensuite
+## Genres : Frenchcore, Hardbass, Trance
 
-- **Frenchcore**, c'est l'identité : nom affiché, hashtags principaux, et la majorité des Reels.
-- **+120 BPM**, c'est l'ouverture : hardbass, funk, tribal, carnaval. Ces morceaux sortent ponctuellement
-  (environ 1 Reel sur 4) pour que le fil reste lisible.
-- Les hashtags suivent le morceau (`#hardbass` pour *Nuit à Moscou*, `#funk` pour *Baile da Gaiola*),
-  mais `#frenchcore` et `#kashing` restent sur tous les posts Frenchcore.
+Le catalogue couvre tous les styles, mais KASHING s'en tient à trois genres et à leurs fusions :
+**Frenchcore, Hardbass, Trance**. Tout le reste (funk, samba, flamenco, zouk, drill…) ne sort
+pas sur les comptes KASHING. Il reste disponible via le catalogue Kash Studio.
+
+- Instagram et YouTube : uniquement ces trois genres.
+- Site : ces trois genres d'abord ; les autres morceaux déjà en ligne passent dans une section
+  « Hors-piste » en fin de playlist (`"focus": false` dans `tracks.js`).
+- Hashtags de base : `#frenchcore` `#hardbass` `#trance` selon le morceau, plus `#kashing` partout.
 
 ## Fil rouge discret : « ça sonne comme dans ma tête »
 

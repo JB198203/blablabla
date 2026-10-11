@@ -105,7 +105,8 @@ def load_existing():
     try:
         for t in json.loads(m.group(1)) if m else []:
             for v in t.get("versions", [t]):
-                out[v["file"]] = {"title": t.get("title"), "key": t.get("key"), "bpm": v.get("bpm")}
+                out[v["file"]] = {"title": t.get("title"), "key": t.get("key"), "bpm": v.get("bpm"),
+                                  "focus": t.get("focus", True)}
     except (json.JSONDecodeError, KeyError, TypeError):
         return {}
     return out
@@ -130,6 +131,8 @@ def main():
         t = groups.setdefault(base, {
             "title": old.get("title") or title_from(f, tags),
             "key": old.get("key") or tags.get("initialkey") or tags.get("tkey"),
+            # false = hors des genres phares (Frenchcore / Hardbass / Trance) : affiché en fin de liste
+            "focus": old.get("focus", True),
             "versions": [],
         })
         t["versions"].append(v)
@@ -137,7 +140,7 @@ def main():
 
     tracks = list(groups.values())
     OUT.write_text(
-        "// Généré par tools/build_tracks.py — title, key et bpm peuvent être édités à la main.\n"
+        "// Généré par tools/build_tracks.py — title, key, bpm et focus peuvent être édités à la main.\n"
         "window.TRACKS = " + json.dumps(tracks, ensure_ascii=False, indent=1) + ";\n",
         encoding="utf-8",
     )

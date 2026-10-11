@@ -1,7 +1,9 @@
 // Lecteur KASHING : playlist, forme d'onde cliquable, lasers qui réagissent au son.
 // La liste des morceaux vient de audio/tracks.js, généré par tools/build_tracks.py.
 (() => {
-  const tracks = Array.isArray(window.TRACKS) ? window.TRACKS : [];
+  // Genres phares d'abord, puis les morceaux « hors-piste » (focus: false).
+  const all = Array.isArray(window.TRACKS) ? window.TRACKS : [];
+  const tracks = [...all.filter((t) => t.focus !== false), ...all.filter((t) => t.focus === false)];
   const $ = (id) => document.getElementById(id);
   const audio = $('audio');
   const playlist = $('playlist');
@@ -27,7 +29,14 @@
   if (!tracks.length) $('player').querySelector('.now').hidden = true;
 
   tracks.forEach((t, i) => {
+    if (t.focus === false && (i === 0 || tracks[i - 1].focus !== false)) {
+      const sep = document.createElement('li');
+      sep.className = 'pl-sep';
+      sep.textContent = 'Hors-piste';
+      playlist.appendChild(sep);
+    }
     const li = document.createElement('li');
+    li.dataset.index = i;
     const b = document.createElement('button');
     b.type = 'button';
     const v = V(t);
@@ -57,7 +66,7 @@
     $('nowTitle').textContent = t.title;
     $('nowMeta').textContent = [v.bpm && `${v.bpm} BPM`, t.key, fmt(v.duration)].filter(Boolean).join(' · ');
     renderVersions(t);
-    [...playlist.children].forEach((li, n) => li.classList.toggle('is-current', n === current));
+    playlist.querySelectorAll('li[data-index]').forEach((li) => li.classList.toggle('is-current', +li.dataset.index === current));
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: t.title, artist: 'KASHING',

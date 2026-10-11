@@ -1,8 +1,9 @@
-// Généré par tools/build_tracks.py — title, key et bpm peuvent être édités à la main.
+// Généré par tools/build_tracks.py — title, key, bpm et focus peuvent être édités à la main.
 window.TRACKS = [
  {
   "title": "Hyperfocus 3AM",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "01_Hyperfocus_3AM.mp3",
@@ -196,6 +197,7 @@ window.TRACKS = [
  {
   "title": "Executive Dysfunction",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "02_Executive_Dysfunction.mp3",
@@ -389,6 +391,7 @@ window.TRACKS = [
  {
   "title": "Dopamine Chase",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "03_Dopamine_Chase.mp3",
@@ -582,6 +585,7 @@ window.TRACKS = [
  {
   "title": "Squirrel!",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "04_Squirrel.mp3",
@@ -962,6 +966,7 @@ window.TRACKS = [
  {
   "title": "Ten Tabs Open Syndrome",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "05_Ten_Tabs_Open_Syndrome.mp3",
@@ -1155,6 +1160,7 @@ window.TRACKS = [
  {
   "title": "Masking Tape",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "06_Masking_Tape.mp3",
@@ -1348,6 +1354,7 @@ window.TRACKS = [
  {
   "title": "Sugar Spike Blues",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "07_Sugar_Spike_Blues.mp3",
@@ -1728,6 +1735,7 @@ window.TRACKS = [
  {
   "title": "Ночная Москва (Nuit à Moscou)",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "08_Nuit_a_Moscou.mp3",
@@ -1921,6 +1929,7 @@ window.TRACKS = [
  {
   "title": "Baile da Gaiola",
   "key": null,
+  "focus": false,
   "versions": [
    {
     "file": "09_Baile_da_Gaiola.mp3",
@@ -2114,6 +2123,7 @@ window.TRACKS = [
  {
   "title": "Hé-ya-ho",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "10_He-ya-ho.mp3",
@@ -2307,6 +2317,7 @@ window.TRACKS = [
  {
   "title": "Transe Doy2",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "11_Transe_doy2.mp3",
@@ -2500,6 +2511,7 @@ window.TRACKS = [
  {
   "title": "Here We Bounce",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "12_Here_we_bounce.mp3",
@@ -2693,6 +2705,7 @@ window.TRACKS = [
  {
   "title": "Enter the Xirtam",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "13_Enter_the_xirtam.mp3",
@@ -2886,6 +2899,7 @@ window.TRACKS = [
  {
   "title": "When I Look 'Pon Dis Wonder Here",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "14_When_I_look_pon_dis_wonder_here.mp3",
@@ -3079,6 +3093,7 @@ window.TRACKS = [
  {
   "title": "Here We Are",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "15_Here_we_are.mp3",
@@ -3272,6 +3287,7 @@ window.TRACKS = [
  {
   "title": "Ukulele Gone Bad",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "16_Ukulele_gone_bad.mp3",
@@ -3465,6 +3481,7 @@ window.TRACKS = [
  {
   "title": "Here We Party",
   "key": null,
+  "focus": false,
   "versions": [
    {
     "file": "17_Here_we_party.mp3",
@@ -3658,6 +3675,7 @@ window.TRACKS = [
  {
   "title": "ANYTHING",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "18_ANYTHING.mp3",
@@ -4038,6 +4056,7 @@ window.TRACKS = [
  {
   "title": "Carnaval de Houilles (Remix)",
   "key": null,
+  "focus": false,
   "versions": [
    {
     "file": "19_Carnaval_de_Houilles.mp3",
@@ -4231,6 +4250,7 @@ window.TRACKS = [
  {
   "title": "Skollie Style (Style Voyou)",
   "key": null,
+  "focus": true,
   "versions": [
    {
     "file": "20_Skollie_Style.mp3",
