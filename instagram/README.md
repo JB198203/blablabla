@@ -72,17 +72,16 @@ Ce qui fait la différence :
   dirigée par Kashing ». La case « contenu altéré ou synthétique » de YouTube vise surtout les contenus
   réalistes (visages, voix de vraies personnes) ; dans le doute, la cocher ne pénalise pas la vidéo.
 
-### Les 6 premiers clips YouTube
+### Les 4 premiers clips YouTube
 
-Les plus Frenchcore et les plus forts au premier contact :
-*Sugar Spike Blues* (version longue), *Here We Are*, *Ukulele Gone Bad*, *Ten Tabs Open Syndrome*,
-*Squirrel!*, *ANYTHING*.
+*Sugar Spike Blues* (version longue), *Ten Tabs Open Syndrome*, *Here We Are*, *Ukulele Gone Bad*.
+Les clips d'accroche viraux (hooks) sont faits par Kashing lui-même.
 
 ### Sur l'objectif « décoller à la Orelsan »
 
 Un morceau viral, ça ne se planifie pas. Ce qui se planifie, c'est d'avoir assez de bons morceaux
 en ligne, bien présentés, au moment où l'un d'eux part, pour que les nouveaux venus trouvent
-une chaîne qui donne envie de rester. C'est le rôle des 5 ou 6 clips de départ.
+une chaîne qui donne envie de rester. C'est le rôle des 4 clips de départ.
 
 ## Genres : Frenchcore, Hardbass, Trance
 
