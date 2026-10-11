@@ -14,7 +14,7 @@
 
 ## Profil
 
-- **Handle** : `@kashing` (à vérifier, sinon `@kashing.fc`, `@kashing_frenchcore`)
+- **Handle** : `@kashingguudenoff` (https://www.instagram.com/kashingguudenoff/)
 - **Nom affiché** : `KASHING · Frenchcore` (ce champ est pris en compte par la recherche Instagram)
 - **Type de compte** : Professionnel, catégorie « Artiste »
 - **Photo de profil** : le masque seul, yeux cyan, sur fond noir (`site/mask.svg`)
@@ -130,7 +130,7 @@ que ceux qui le vivent se reconnaissent.
 ### Semaines 4 et 5 : engagement
 - **« Qui est KASHING ? »** : un indice par semaine en story (ville, DAW, première track).
   Le mystère alimente la curiosité, mais ne révèle jamais rien.
-- **Défi kick** : un Reel où le kick est isolé, puis « fais ton edit et identifie @kashing ».
+- **Défi kick** : un Reel où le kick est isolé, puis « fais ton edit et identifie @kashingguudenoff ».
   On repartage les meilleures réponses.
 - Contacter 5 à 10 **pages de repost Frenchcore et Uptempo** en leur envoyant le meilleur clip.
   C'est le levier de portée le plus rentable sur cette niche.

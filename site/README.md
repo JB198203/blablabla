@@ -54,8 +54,8 @@ simulé au lieu d'analyser le son.
 
 | Quoi | Où |
 |---|---|
-| Email `contact@kashstudio.fr` | `index.html` (formulaire + footer) |
-| Lien Instagram `@kashing` | `index.html` |
+| ~~Email~~ fait : kashingguudenoff@gmail.com | `index.html` |
+| ~~Lien Instagram~~ fait : @kashingguudenoff | `index.html` |
 | Prix Kash Studio (« sur devis » pour l'instant) | section `#studio` |
 
 ## Hébergement

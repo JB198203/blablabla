@@ -322,7 +322,7 @@ def main():
     ap.add_argument("--format", choices=LAYOUTS, default="reel",
                     help="reel = 1080x1920 (Instagram, Shorts) ; youtube = 1920x1080, morceau entier")
     ap.add_argument("--title")
-    ap.add_argument("--handle", default="@kashing")
+    ap.add_argument("--handle", default="@kashingguudenoff")
     ap.add_argument("--cover", action="store_true", help="exporte aussi une couverture .jpg")
     a = ap.parse_args()
     global L, W, H, FPS
