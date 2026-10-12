@@ -17,7 +17,7 @@
 - **Handle** : `@kashingguudenoff` (https://www.instagram.com/kashingguudenoff/)
 - **Nom affiché** : `KASHING · Frenchcore` (ce champ est pris en compte par la recherche Instagram)
 - **Type de compte** : Professionnel, catégorie « Artiste »
-- **Photo de profil** : le masque seul, yeux cyan, sur fond noir (`site/mask.svg`)
+- **Photo de profil** : le logo KASHING sur fond noir (`assets/instagram_profile.jpg`, 1080x1080)
 - **Bio** :
 
 ```
@@ -37,7 +37,7 @@ Le masque ne parle pas. Le kick, si.
 | Accents | cyan `#22e8ff`, magenta `#ff2bd6` |
 | Logo | KASHING en chrome, police Unbounded Black |
 | Infos | JetBrains Mono (titre, BPM) |
-| Personnage | le masque, présent dans **chaque** visuel |
+| Emblème | le logo KASHING (triangle d'acier, disque doré, scanner rouge K2000), présent dans **chaque** visuel |
 
 Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
 au même endroit (centre) pour qu'on le reconnaisse en scrollant.

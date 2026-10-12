@@ -70,7 +70,7 @@
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: t.title, artist: 'KASHING',
-        artwork: [{ src: 'mask.svg', sizes: '512x512', type: 'image/svg+xml' }],
+        artwork: [{ src: 'logo-512.png', sizes: '512x512', type: 'image/png' }],
       });
     }
     drawWave();
@@ -172,6 +172,50 @@
     } catch (_) { analyser = null; }
   }
 
+  // --- Scanner K2000 dans la fente du logo ------------------------------
+  // Même calcul que les vidéos (tools/logo_fx.py) : un passage toutes les 2 temps, traînée, halo.
+  const scan = document.querySelector('.scanner');
+  const sg = scan && scan.getContext('2d');
+  const SLOT = { x0: 0.098, x1: 0.902, y0: 0.355, y1: 0.645 };   // fente, en fraction du canevas
+  const kitt = (beats) => {
+    const ph = (beats / 2) % 2;
+    const u = ph < 1 ? ph : 2 - ph;
+    return (1 - Math.cos(Math.PI * u)) / 2;
+  };
+  function drawScanner(beats, level) {
+    if (!sg) return;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    const w = (scan.width = scan.clientWidth * dpr);
+    const h = (scan.height = scan.clientHeight * dpr);
+    const x0 = SLOT.x0 * w, x1 = SLOT.x1 * w, y0 = SLOT.y0 * h, y1 = SLOT.y1 * h, sh = y1 - y0;
+    const span = x1 - x0 - sh;
+    const blobs = (g) => {
+      for (let i = 12; i >= 0; i--) {
+        const cx = x0 + sh / 2 + kitt(beats - i * 0.045) * span;
+        const r = sh * (i === 0 ? 1.6 : 1.2);
+        g.globalAlpha = level * (1 - i / 13) ** 2;
+        g.beginPath();
+        g.ellipse(cx, (y0 + y1) / 2, r, sh / 2 + 1, 0, 0, Math.PI * 2);
+        g.fill();
+      }
+    };
+    sg.clearRect(0, 0, w, h);
+    sg.fillStyle = '#ff1c12';
+    sg.save();                                    // halo : déborde légèrement sur l'or
+    sg.shadowColor = '#ff1c12';
+    sg.shadowBlur = sh * 1.4;
+    sg.globalCompositeOperation = 'lighter';
+    blobs(sg);
+    sg.restore();
+    sg.save();                                    // cœur : reste dans la fente
+    sg.beginPath();
+    sg.roundRect(x0, y0, x1 - x0, sh, sh / 2);
+    sg.clip();
+    blobs(sg);
+    sg.restore();
+    sg.globalAlpha = 1;
+  }
+
   let energy = 0;
   function frame() {
     let target = 0;
@@ -189,9 +233,15 @@
     }
     energy += (target - energy) * (target > energy ? 0.6 : 0.15);
     root.style.setProperty('--energy', energy.toFixed(3));
+    // à l'arrêt, le scanner balaie doucement (~120 BPM) ; en lecture, il suit le tempo du morceau
+    const bpm = (tracks[current] && V(tracks[current]).bpm) || 190;
+    const beats = audio.paused ? performance.now() / 500 : audio.currentTime * bpm / 60;
+    root.style.setProperty('--tilt', `${(4 * energy * Math.sin(Math.PI * beats)).toFixed(2)}deg`);
+    drawScanner(beats, 0.75 + 0.25 * energy);
     requestAnimationFrame(frame);
   }
   if (!reduceMotion) frame();
+  else drawScanner(1, 1);                         // mouvement réduit : scanner fixe au centre
 
   if (tracks.length) load(0, false);
 })();

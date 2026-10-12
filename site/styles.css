@@ -111,17 +111,16 @@ canvas, svg { display: block; max-width: 100%; }
   filter: blur(20px);
   pointer-events: none;
 }
-.mask {
-  width: clamp(120px, 18vh, 200px);
-  height: auto;
-  filter: drop-shadow(0 0 30px rgba(34, 232, 255, .25));
-  transform: scale(calc(1 + var(--energy) * .04));
+/* Emblème : image d'origine ; rebond et bascule pilotés par --energy et --tilt (main.js) */
+.emblem {
+  position: relative;
+  width: clamp(220px, 36svh, 400px);
+  transform: translateY(calc(var(--energy) * -5%)) scale(calc(1 + var(--energy) * .06)) rotate(var(--tilt, 0deg));
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .65));
 }
-.mask .eyes {
-  fill: var(--cyan);
-  filter: drop-shadow(0 0 6px var(--cyan)) drop-shadow(0 0 14px var(--cyan));
-  opacity: calc(.6 + var(--energy) * .4);
-}
+.emblem img { display: block; width: 100%; height: auto; }
+/* zone du scanner K2000 : un peu plus grande que la fente pour laisser déborder le halo */
+.scanner { position: absolute; left: 30.26%; top: 49.55%; width: 39.57%; height: 9.22%; pointer-events: none; }
 .hero-title {
   margin: 24px 0 0;
   font: 900 clamp(48px, min(13vw, 16svh), 200px)/.95 var(--display);

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Génère un Reel vertical KASHING (1080x1920, 30 i/s) à partir d'un MP3.
 
-Visuel « chrome & laser » : masque chromé dont les yeux s'allument sur le kick,
+Visuel « chrome & laser » : le logo KASHING (tools/logo_fx.py) rebondit sur le kick avec son scanner K2000,
 lasers cyan/magenta qui balayent, spectre en bas, flash sur les kicks forts.
 Le passage le plus énergique (le drop) est détecté automatiquement.
 
@@ -21,13 +21,16 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from logo_fx import LogoFX  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
 # Mises en page : « reel » (Instagram / Shorts, 9:16) et « youtube » (16:9, morceau entier).
 LAYOUTS = {
-    "reel": dict(size=(1080, 1920), fps=30, mask_w=500, mask_y=470, word_y=180, word_size=190,
-                 spec_cy=1250, spec_h=80, title_y=1400, meta_y=1464, title_size=52, meta_size=30),
-    "youtube": dict(size=(1920, 1080), fps=24, mask_w=360, mask_y=225, word_y=40, word_size=120,
+    "reel": dict(size=(1080, 1920), fps=30, logo_w=800, logo_cy=790, word_y=180, word_size=190,
+                 spec_cy=1280, spec_h=80, title_y=1420, meta_y=1480, title_size=52, meta_size=30),
+    "youtube": dict(size=(1920, 1080), fps=24, logo_w=600, logo_cy=452, word_y=40, word_size=120,
                     spec_cy=790, spec_h=50, title_y=930, meta_y=990, title_size=48, meta_size=28),
 }
 L = LAYOUTS["reel"]
@@ -130,50 +133,6 @@ def background():
     return ImageChops.add(img, smoke)
 
 
-def cubic(p0, p1, p2, p3, n=24):
-    return [tuple((1 - t) ** 3 * np.array(p0) + 3 * (1 - t) ** 2 * t * np.array(p1)
-                  + 3 * (1 - t) * t ** 2 * np.array(p2) + t ** 3 * np.array(p3))
-            for t in np.linspace(0, 1, n)]
-
-
-def mask_layers(width=500):
-    """Masque chromé (RGBA) + calque des yeux + halo des yeux, à partir de site/mask.svg."""
-    ss = 2
-    k = width * ss / 200
-    sw, sh = int(200 * k), int(240 * k)
-    P = lambda pts: [(x * k, y * k) for x, y in pts]
-    shield = (cubic((100, 8), (150, 8), (184, 40), (184, 100)) + cubic((184, 100), (184, 160), (150, 210), (100, 232))
-              + cubic((100, 232), (50, 210), (16, 160), (16, 100)) + cubic((16, 100), (16, 40), (50, 8), (100, 8)))
-    alpha = Image.new("L", (sw, sh))
-    ImageDraw.Draw(alpha).polygon(P(shield), fill=255)
-    face = chrome_fill(alpha)
-    # reflet latéral
-    sheen = np.abs(np.linspace(-1, 1, sw)) ** 1.6 * 115
-    dark = Image.fromarray(np.repeat(sheen[None, :], sh, axis=0).astype(np.uint8), "L")
-    face = Image.composite(Image.new("RGBA", (sw, sh), (0, 0, 0, 255)), face, ImageChops.multiply(dark, alpha))
-    face.putalpha(alpha)
-    marks = Image.new("RGBA", (sw, sh))
-    d = ImageDraw.Draw(marks)
-    d.line(P([(100, 18), (100, 222)]), fill=(11, 13, 20, 70), width=int(1.5 * k))
-    for x, y, w in [(72, 164, 56), (78, 178, 44), (86, 192, 28)]:
-        d.rounded_rectangle(P([(x, y), (x + w, y + 6)]), radius=3 * k, fill=(11, 13, 20, 255))
-    face.alpha_composite(marks)
-    eyes_pts = [[(38, 90), (90, 108), (86, 124), (44, 112)], [(162, 90), (110, 108), (114, 124), (156, 112)]]
-    eyes = Image.new("RGBA", (sw, sh))
-    de = ImageDraw.Draw(eyes)
-    for e in eyes_pts:
-        de.polygon(P(e), fill=CYAN + (255,))
-    face.alpha_composite(eyes)
-    size = (width, int(width * 1.2))
-    face = face.resize(size, Image.LANCZOS)
-    eyes = eyes.resize(size, Image.LANCZOS)
-    glow = Image.new("RGBA", (size[0] + 200, size[1] + 200))
-    glow.paste(eyes, (100, 100))
-    glow = glow.filter(ImageFilter.GaussianBlur(22))
-    glow = ImageChops.add(glow, glow)  # renforce le halo
-    return face, eyes, glow
-
-
 def fit_font(path, text, max_w, start):
     size = start
     while size > 20:
@@ -241,7 +200,7 @@ def spectrum(d, bands):
 
 # --- Rendu -----------------------------------------------------------------
 
-def render(mp3, out, start, duration, title, meta, cover):
+def render(mp3, out, start, duration, title, meta, cover, bpm):
     x = decode(mp3)
     if duration is None:  # morceau entier
         start, duration = 0.0, len(x) / SR
@@ -254,9 +213,10 @@ def render(mp3, out, start, duration, title, meta, cover):
     print(f"  segment {start:.1f}s → {start + duration:.1f}s, {frames} images")
 
     bg = background().convert("RGBA")
-    face, eyes, eyes_glow = mask_layers(L["mask_w"])
+    fx = LogoFX(L["logo_w"])
+    punch = kick ** 1.5
     texts = text_layer(title, meta)
-    mx, my = (W - face.width) // 2, L["mask_y"]
+
 
     out.parent.mkdir(parents=True, exist_ok=True)
     cmd = ["ffmpeg", "-v", "error", "-y",
@@ -272,12 +232,8 @@ def render(mp3, out, start, duration, title, meta, cover):
         for f in range(frames):
             t, e = f / FPS, float(kick[f])
             frame = ImageChops.add(bg, laser_layer(t, e).convert("RGBA"))
-            s = 1 + 0.035 * e
-            m = face if s < 1.002 else face.resize((int(face.width * s), int(face.height * s)), Image.BILINEAR)
-            frame.alpha_composite(m, (mx - (m.width - face.width) // 2, my - (m.height - face.height) // 2))
-            g = eyes_glow.copy()
-            g.putalpha(g.getchannel("A").point(lambda v, k=0.35 + 0.65 * e: int(v * k)))
-            frame.alpha_composite(g, (mx - 100, my - 100))
+            logo, jump = fx.render(t, bpm, e, float(punch[f]))
+            frame.alpha_composite(logo, ((W - logo.width) // 2, L["logo_cy"] - logo.height // 2 - jump))
             d = ImageDraw.Draw(frame)
             spectrum(d, spec[f])
             frame.alpha_composite(texts)
@@ -336,7 +292,7 @@ def main():
     meta = " · ".join(filter(None, [f"{bpm} BPM" if bpm else None, a.handle]))
     suffix = "" if a.format == "reel" else "_youtube"
     out = a.out or ROOT / "clips" / (a.mp3.stem + suffix + ".mp4")
-    start = render(a.mp3, out, a.start, duration, title, meta, a.cover)
+    start = render(a.mp3, out, a.start, duration, title, meta, a.cover, bpm or 190)
     print(f"  → {out}  (début {start:.1f}s)")
 
 

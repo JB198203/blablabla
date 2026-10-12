@@ -5,7 +5,7 @@ personnage masqué.
 
 ## Sections
 
-- **Hero** : le masque chromé (`mask.svg`) et des lasers qui réagissent au son de la track en cours.
+- **Hero** : le logo KASHING (`logo.webp`) qui rebondit et bascule sur le kick, avec un scanner rouge K2000 dans la fente, et des lasers qui réagissent au son.
 - **Musique** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
 - **Le masque** : le texte sur l'anonymat de l'artiste.
 - **Kash Studio** : la ghost production (process, offres).
