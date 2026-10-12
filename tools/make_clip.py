@@ -335,7 +335,7 @@ def main():
 
     title, bpm = track_info(a.mp3)
     title = a.title or title or a.mp3.stem
-    meta = " · ".join(filter(None, [f"{bpm} BPM" if bpm else None, a.handle]))
+    meta = a.handle   # pas de BPM affiché : les estimations ne sont pas assez fiables
     suffix = "" if a.format == "reel" else "_youtube"
     out = a.out or ROOT / "clips" / (a.mp3.stem + suffix + ".mp4")
     start = render(a.mp3, out, a.start, duration, title, meta, a.cover, bpm or 190, a.bg)

@@ -131,7 +131,7 @@ def main():
         t = groups.setdefault(base, {
             "title": old.get("title") or title_from(f, tags),
             "key": old.get("key") or tags.get("initialkey") or tags.get("tkey"),
-            # false = hors des genres phares (Frenchcore / Hardbass / Trance) : affiché en fin de liste
+            # false = hors des genres phares (Frenchcore / Hardbass / World fusion) : affiché en fin de liste
             "focus": old.get("focus", True),
             "versions": [],
         })

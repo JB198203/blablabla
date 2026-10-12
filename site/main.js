@@ -32,7 +32,7 @@
     if (t.focus === false && (i === 0 || tracks[i - 1].focus !== false)) {
       const sep = document.createElement('li');
       sep.className = 'pl-sep';
-      sep.textContent = 'Hors-piste';
+      sep.textContent = 'Off the map';
       playlist.appendChild(sep);
     }
     const li = document.createElement('li');
@@ -42,7 +42,6 @@
     const v = V(t);
     b.innerHTML = `<span class="pl-n">${String(i + 1).padStart(2, '0')}</span>
       <span class="pl-title"></span>
-      <span class="pl-bpm">${v.bpm ? v.bpm + ' BPM' : ''}</span>
       <span class="pl-dur">${fmt(v.duration)}</span>`;
     b.querySelector('.pl-title').textContent = t.title;
     if (t.versions.length > 1) {
@@ -64,7 +63,7 @@
     audio.src = 'audio/' + encodeURIComponent(v.file);
     if (startAt) audio.addEventListener('loadedmetadata', () => { audio.currentTime = Math.min(startAt, audio.duration - 1); }, { once: true });
     $('nowTitle').textContent = t.title;
-    $('nowMeta').textContent = [v.bpm && `${v.bpm} BPM`, t.key, fmt(v.duration)].filter(Boolean).join(' · ');
+    $('nowMeta').textContent = [t.key, fmt(v.duration)].filter(Boolean).join(' · ');
     renderVersions(t);
     playlist.querySelectorAll('li[data-index]').forEach((li) => li.classList.toggle('is-current', +li.dataset.index === current));
     if ('mediaSession' in navigator) {
@@ -110,11 +109,11 @@
   $('prevBtn').addEventListener('click', () => load(audio.currentTime > 3 ? current : current - 1, true));
   $('nextBtn').addEventListener('click', () => load(current + 1, true));
   $('heroPlay').addEventListener('click', () => {
-    $('musique').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    $('music').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
     if (tracks.length) play();
   });
   audio.addEventListener('play', () => { playBtn.textContent = '❚❚'; playBtn.setAttribute('aria-label', 'Pause'); });
-  audio.addEventListener('pause', () => { playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', 'Lecture'); });
+  audio.addEventListener('pause', () => { playBtn.textContent = '▶'; playBtn.setAttribute('aria-label', 'Play'); });
   audio.addEventListener('ended', () => load(current + 1, true));
   audio.addEventListener('timeupdate', () => {
     $('time').textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration || (tracks[current] && V(tracks[current]).duration))}`;

@@ -15,19 +15,22 @@
 ## Profil
 
 - **Handle** : `@kashingguudenoff` (https://www.instagram.com/kashingguudenoff/)
-- **Nom affiché** : `KASHING · Frenchcore` (ce champ est pris en compte par la recherche Instagram)
+- **Nom affiché** : `KASHING | Frenchcore` (ce champ est pris en compte par la recherche Instagram)
 - **Type de compte** : Professionnel, catégorie « Artiste »
 - **Photo de profil** : le logo KASHING sur fond noir (`assets/instagram_profile.jpg`, 1080x1080)
 - **Bio** :
 
 ```
-Frenchcore · Hardbass · Trance 🎭 visage inconnu
-Le masque ne parle pas. Le kick, si.
-↓ 30 tracks en écoute
+Frenchcore · Hardbass · World fusion
+No face. No name. Just the kick.
+Those who know, know. ⚙️
+🎧 Full tracks ↓
 ```
 
-- **Lien** : le site
-- **Stories à la une** : `Tracks` · `Le masque` · `Coulisses` · `Dates`
+En anglais : on vise un public international. Ne pas écrire l'URL dans la bio (elle n'y est pas cliquable).
+
+- **Lien** (champ « Liens ») : https://kashing.vercel.app
+- **Stories à la une** : `Tracks` · `Unknown` · `Backstage` · `Dates`
 
 ## Charte (identique au site et aux clips)
 
@@ -83,16 +86,17 @@ Un morceau viral, ça ne se planifie pas. Ce qui se planifie, c'est d'avoir asse
 en ligne, bien présentés, au moment où l'un d'eux part, pour que les nouveaux venus trouvent
 une chaîne qui donne envie de rester. C'est le rôle des 4 clips de départ.
 
-## Genres : Frenchcore, Hardbass, Trance
+## Genres : Frenchcore, Hardbass, World fusion
 
-Le catalogue couvre tous les styles, mais KASHING s'en tient à trois genres et à leurs fusions :
-**Frenchcore, Hardbass, Trance**. Tout le reste (funk, samba, flamenco, zouk, drill…) ne sort
-pas sur les comptes KASHING. Il reste disponible via le catalogue Kash Studio.
+Le catalogue couvre tous les styles, mais KASHING s'en tient à trois familles :
+**Frenchcore, Hardbass, World fusion** (le kick Frenchcore/Hardbass mélangé à une musique
+d'ailleurs : baile funk, samba, flamenco, musiques des Balkans…). Les morceaux qui n'ont pas
+ce kick ne sortent pas sur les comptes KASHING. Ils restent disponibles via le catalogue Kash Studio.
 
 - Instagram et YouTube : uniquement ces trois genres.
 - Site : ces trois genres d'abord ; les autres morceaux déjà en ligne passent dans une section
-  « Hors-piste » en fin de playlist (`"focus": false` dans `tracks.js`).
-- Hashtags de base : `#frenchcore` `#hardbass` `#trance` selon le morceau, plus `#kashing` partout.
+  « Off the map » en fin de playlist (`"focus": false` dans `tracks.js`).
+- Hashtags de base : `#frenchcore` `#hardbass` `#worldfusion` selon le morceau, plus `#kashing` partout.
 
 ## Fil rouge discret : « ça sonne comme dans ma tête »
 

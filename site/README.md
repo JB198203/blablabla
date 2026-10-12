@@ -1,15 +1,14 @@
-# Site KASHING (+ Kash Studio)
+# Site KASHING
 
-Site statique d'une page (HTML/CSS/JS, aucun build). Direction visuelle : chrome & laser,
-personnage masqué.
+Site statique d'une page en anglais (HTML/CSS/JS, aucun build), consacré à l'artiste KASHING
+uniquement : pas de section Kash Studio.
 
 ## Sections
 
 - **Hero** : le logo KASHING (`logo.webp`) qui rebondit et bascule sur le kick, avec un scanner rouge K2000 dans la fente, et des lasers qui réagissent au son.
-- **Musique** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
-- **Le masque** : le texte sur l'anonymat de l'artiste.
-- **Kash Studio** : la ghost production (process, offres).
-- **Contact** : booking ou brief.
+- **Music** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
+- **Unknown** : le texte sur l'anonymat de l'artiste.
+- **Contact** : booking, DJ, label, collab.
 
 ## Ajouter des tracks
 
@@ -61,7 +60,6 @@ simulé au lieu d'analyser le son.
 |---|---|
 | ~~Email~~ fait : kashingguudenoff@gmail.com | `index.html` |
 | ~~Lien Instagram~~ fait : @kashingguudenoff | `index.html` |
-| Prix Kash Studio (« sur devis » pour l'instant) | section `#studio` |
 
 ## Hébergement
 
