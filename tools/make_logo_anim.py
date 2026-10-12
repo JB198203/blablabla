@@ -4,8 +4,8 @@
 L'emblème (assets/kashing_logo.png, détouré de l'image d'origine par tools/cutout_logo.py)
 rebondit sur le kick : il saute, grossit et bascule d'un côté puis de l'autre au tempo.
 Les pixels d'origine sont gardés tels quels ; l'image n'est jamais agrandie au-delà de sa
-taille native. Ouverture en zoom avant, « KASHING » en chrome dessous. --glow ajoute une
-lueur cyan dans la fente sur le kick (désactivée par défaut).
+taille native. Ouverture en zoom avant, « KASHING » en chrome dessous. Dans la fente, un
+scanner rouge façon K2000 balaie de gauche à droite au tempo (--no-scanner pour l'enlever).
 
   python3 tools/make_logo_anim.py site/audio/15_Here_we_are.mp3                 # carré 1080, 8 s, sur le drop
   python3 tools/make_logo_anim.py track.mp3 --format wide --duration 5 --start 36
@@ -22,7 +22,45 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import make_clip as mc  # noqa: E402
 
 LOGO = mc.ROOT / "assets" / "kashing_logo.png"
-SLOT = (440, 533, 850, 560)   # fente dans assets/kashing_logo.png (x0, y0, x1, y1), pour --glow
+SLOT = (440, 533, 850, 560)   # fente dans assets/kashing_logo.png (x0, y0, x1, y1), pour le scanner
+RED = (255, 28, 18)
+
+
+class Scanner:
+    """Point rouge qui va et vient dans la fente avec une traînée (K2000), plus fort sur le kick."""
+
+    def __init__(self, size, k):
+        self.size = size
+        self.x0, self.y0, self.x1, self.y1 = (v * k for v in SLOT)
+        self.h = self.y1 - self.y0
+        self.mask = Image.new("L", size)
+        ImageDraw.Draw(self.mask).rounded_rectangle([self.x0, self.y0, self.x1, self.y1],
+                                                    radius=self.h / 2, fill=255)
+
+    @staticmethod
+    def pos(beats):
+        """Aller-retour toutes les 4 temps (un passage = 2 temps), ralenti aux extrémités."""
+        ph = (beats / 2) % 2
+        u = ph if ph < 1 else 2 - ph
+        return (1 - np.cos(np.pi * u)) / 2
+
+    def render(self, beats, energy):
+        layer = Image.new("RGBA", self.size)
+        d = ImageDraw.Draw(layer)
+        span = self.x1 - self.x0 - self.h
+        for i in range(12, -1, -1):                     # traînée : positions passées, de plus en plus pâles
+            u = self.pos(beats - i * 0.045)
+            cx = self.x0 + self.h / 2 + u * span
+            a = int(255 * (1 - i / 13) ** 2)
+            w = self.h * (1.6 if i == 0 else 1.2)
+            d.ellipse([cx - w, self.y0 - 2, cx + w, self.y1 + 2], fill=RED + (a,))
+        core = Image.new("RGBA", self.size)
+        core.paste(layer, (0, 0), self.mask)            # la lumière reste dans la fente
+        halo = core.filter(ImageFilter.GaussianBlur(self.h * 0.9))
+        level = 0.75 + 0.25 * energy
+        out = Image.alpha_composite(Image.alpha_composite(halo, halo), core)  # halo doublé : effet néon
+        out.putalpha(out.getchannel("A").point(lambda v: int(min(255, v * level))))
+        return out
 
 FORMATS = {"square": (1080, 1080), "wide": (1920, 1080), "reel": (1080, 1920)}
 
@@ -58,7 +96,7 @@ def main():
     ap.add_argument("--start", type=float)
     ap.add_argument("--duration", type=float, default=8)
     ap.add_argument("--out", type=Path)
-    ap.add_argument("--glow", action="store_true", help="lueur cyan dans la fente sur le kick")
+    ap.add_argument("--no-scanner", action="store_true", help="sans le scanner rouge dans la fente")
     a = ap.parse_args()
 
     W, H = FORMATS[a.format]
@@ -80,12 +118,7 @@ def main():
     mw = min(src.width, int(logo_w * 1.1))
     master = src.resize((mw, int(src.height * mw / src.width)), Image.LANCZOS)
     k = mw / src.width
-    glow_layer = None
-    if a.glow:
-        g = Image.new("RGBA", master.size)
-        x0, y0, x1, y1 = (int(v * k) for v in SLOT)
-        ImageDraw.Draw(g).rounded_rectangle([x0, y0, x1, y1], radius=(y1 - y0) // 2, fill=mc.CYAN + (255,))
-        glow_layer = Image.alpha_composite(g.filter(ImageFilter.GaussianBlur(14 * k * 2)), g)
+    scanner = None if a.no_scanner else Scanner(master.size, k)
     bg = background(W, H)
     word = wordmark(W, int(min(W, H) * 0.075))
     ly = int(H * 0.47 - lh / 2) - (word.height // 2)
@@ -106,10 +139,8 @@ def main():
             ease = 1 - (1 - intro) ** 3
             p = float(punch[f])
             img = master
-            if glow_layer is not None and e > 0.02:
-                gl = glow_layer.copy()
-                gl.putalpha(gl.getchannel("A").point(lambda v, q=e: int(v * q)))
-                img = Image.alpha_composite(master, gl)
+            if scanner is not None:
+                img = Image.alpha_composite(master, scanner.render(t * bpm / 60, e))
             sc = (0.82 + 0.18 * ease) * (1 + 0.08 * p) * logo_w / mw
             img = img.resize((int(img.width * sc), int(img.height * sc)), Image.BICUBIC)
             # bascule gauche / droite : un aller-retour toutes les 2 temps, amplitude selon le kick
