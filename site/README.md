@@ -5,7 +5,7 @@ uniquement : pas de section Kash Studio.
 
 ## Sections
 
-- **Hero** : le logo KASHING (`logo.webp`) qui rebondit et bascule sur le kick, avec un scanner rouge K2000 dans la fente, et des lasers qui réagissent au son.
+- **Hero** : fixe, sans animation (pour ne rien consommer) : le logo KASHING devant la foule dans le noir (`hero-wide.webp` sur ordinateur, `hero-tall.webp` sur téléphone, tirées de `assets/ambiance/festival_01.jpg`), nom en police Tourney.
 - **Music** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
 - **Unknown** : le texte sur l'anonymat de l'artiste.
 - **Contact** : booking, DJ, label, collab.

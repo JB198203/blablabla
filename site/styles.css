@@ -6,13 +6,13 @@
   --line: #1f2330;
   --cyan: #22e8ff;
   --magenta: #ff2bd6;
+  --brand: "Tourney", var(--display);   /* police du nom KASHING */
   --chrome: linear-gradient(180deg, #ffffff 0%, #b9c1d2 36%, #2b3040 50%, #d7deea 56%, #737b90 82%, #eef2f8 100%);
   --display: "Unbounded", "Arial Black", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --body: "Inter", system-ui, sans-serif;
   --gutter: clamp(16px, 4vw, 48px);
   /* 0 → 1, piloté par le lecteur audio (main.js) */
-  --energy: 0;
 }
 
 * { box-sizing: border-box; }
@@ -52,7 +52,7 @@ canvas, svg { display: block; max-width: 100%; }
 .nav nav { display: flex; gap: 28px; font: 700 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
 .nav nav a { text-decoration: none; color: var(--muted); transition: color .15s; }
 .nav nav a:hover { color: var(--cyan); }
-.logo { font: 900 20px/1 var(--display); letter-spacing: .04em; text-decoration: none; margin: 0; }
+.logo { font: italic 900 22px/1 var(--brand); letter-spacing: .02em; text-decoration: none; margin: 0; }
 
 /* BUTTONS */
 .btn {
@@ -80,51 +80,29 @@ canvas, svg { display: block; max-width: 100%; }
   overflow: hidden;
   isolation: isolate;
 }
-.lasers { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
-.lasers span {
-  position: absolute; top: -5%; left: 50%;
-  width: 2px; height: 150%;
-  transform-origin: top center;
-  background: linear-gradient(180deg, var(--c) 0%, transparent 85%);
-  box-shadow: 0 0 12px var(--c), 0 0 32px var(--c);
-  opacity: calc(.25 + var(--energy) * .75);
-  animation: sweep var(--d) ease-in-out infinite alternate;
+/* Fond : la foule dans le noir, photo fixe (aucune animation sur la landing) */
+.hero-bg {
+  position: absolute; inset: 0; z-index: -1;
+  background: url(hero-wide.webp) center 40% / cover no-repeat;
 }
-.lasers span:nth-child(odd) { --c: var(--cyan); }
-.lasers span:nth-child(even) { --c: var(--magenta); }
-.lasers span:nth-child(1) { --from: -62deg; --to: -20deg; --d: 7s; }
-.lasers span:nth-child(2) { --from: -40deg; --to: -8deg;  --d: 5s; }
-.lasers span:nth-child(3) { --from: -18deg; --to: 14deg;  --d: 6s; }
-.lasers span:nth-child(4) { --from: 18deg;  --to: -14deg; --d: 6.5s; }
-.lasers span:nth-child(5) { --from: 40deg;  --to: 8deg;   --d: 5.5s; }
-.lasers span:nth-child(6) { --from: 62deg;  --to: 20deg;  --d: 7.5s; }
-@keyframes sweep {
-  from { transform: rotate(var(--from)); }
-  to { transform: rotate(var(--to)); }
-}
-.smoke {
-  position: absolute; inset: auto -20% -10% -20%; height: 60%; z-index: -1;
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(40% 60% at 25% 80%, rgba(255, 43, 214, .18), transparent 70%),
-    radial-gradient(45% 55% at 75% 85%, rgba(34, 232, 255, .16), transparent 70%),
-    radial-gradient(60% 50% at 50% 100%, rgba(150, 160, 190, .14), transparent 70%);
-  filter: blur(20px);
-  pointer-events: none;
+    radial-gradient(60% 55% at 50% 42%, rgba(5, 6, 10, .35), rgba(5, 6, 10, .8) 100%),
+    linear-gradient(180deg, rgba(5, 6, 10, .55) 0%, rgba(5, 6, 10, .25) 45%, var(--bg) 100%);
 }
-/* Emblème : image d'origine ; rebond et bascule pilotés par --energy et --tilt (main.js) */
+@media (max-aspect-ratio: 4/5) {
+  .hero-bg { background-image: url(hero-tall.webp); background-position: center 30%; }
+}
 .emblem {
-  position: relative;
-  width: clamp(220px, 36svh, 400px);
-  transform: translateY(calc(var(--energy) * -5%)) scale(calc(1 + var(--energy) * .06)) rotate(var(--tilt, 0deg));
-  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .65));
+  width: clamp(200px, 32svh, 360px);
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .75));
 }
 .emblem img { display: block; width: 100%; height: auto; }
-/* zone du scanner K2000 : un peu plus grande que la fente pour laisser déborder le halo */
-.scanner { position: absolute; left: 30.26%; top: 49.55%; width: 39.57%; height: 9.22%; pointer-events: none; }
 .hero-title {
   margin: 24px 0 0;
-  font: 900 clamp(48px, min(13vw, 16svh), 200px)/.95 var(--display);
-  letter-spacing: -.02em;
+  font: italic 900 clamp(48px, min(17vw, 18svh), 220px)/.95 var(--brand);
+  letter-spacing: 0;
   filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .6)) drop-shadow(0 0 24px rgba(34, 232, 255, .18));
 }
 .hero-sub {
@@ -244,5 +222,4 @@ canvas, svg { display: block; max-width: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .lasers span { animation: none; transform: rotate(var(--from)); }
 }
