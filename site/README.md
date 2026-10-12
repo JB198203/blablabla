@@ -7,7 +7,7 @@ uniquement : pas de section Kash Studio.
 
 - **Hero** : fixe, sans animation (pour ne rien consommer) : le logo KASHING devant la foule dans le noir (`hero-wide.webp` sur ordinateur, `hero-tall.webp` sur téléphone, tirées de `assets/ambiance/festival_01.jpg`), nom en police Tourney.
 - **Music** : un lecteur avec playlist, forme d'onde cliquable, contrôles depuis l'écran de verrouillage du téléphone.
-- **Unknown** : le texte sur l'anonymat de l'artiste.
+- **The Sound** : texte court et générique sur la musique (pas d'histoire perso).
 - Pas de section contact : on passe par Instagram (DM).
 
 ## Ajouter des tracks

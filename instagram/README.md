@@ -7,10 +7,11 @@
 
 ## Positionnement
 
-- **KASHING** est l'artiste : Frenchcore, masque chromé, anonyme. C'est lui qu'on fait connaître.
-- **Kash Studio** est l'atelier de ghost production. Il apparaît sur le site, pas dans le fil
-  Instagram : un compte artiste qui vend des tracks à d'autres brouille le message. On en reparle quand
-  KASHING aura une audience.
+- **KASHING** est l'artiste : Frenchcore, Hardbass, World fusion. C'est lui qu'on fait connaître.
+  On ne montre pas son visage pour l'instant, mais on n'en fait pas un sujet : pas de « mystère »,
+  pas de masque, pas d'histoire perso. On parle de la musique, c'est tout. L'image, c'est le logo.
+- **Kash Studio** (ghost production) n'apparaît ni sur le site ni dans le fil Instagram : un compte
+  artiste qui vend des tracks à d'autres brouille le message.
 
 ## Profil
 
@@ -22,15 +23,14 @@
 
 ```
 Frenchcore · Hardbass · World fusion
-No face. No name. Just the kick.
-Those who know, know. ⚙️
+Feel the drop. 🔊
 🎧 Full tracks ↓
 ```
 
 En anglais : on vise un public international. Ne pas écrire l'URL dans la bio (elle n'y est pas cliquable).
 
 - **Lien** (champ « Liens ») : https://kashing.vercel.app
-- **Stories à la une** : `Tracks` · `Unknown` · `Backstage` · `Dates`
+- **Stories à la une** : `Tracks` · `Live` · `Studio vibes` · `Dates`
 
 ## Charte (identique au site et aux clips)
 
@@ -38,12 +38,13 @@ En anglais : on vise un public international. Ne pas écrire l'URL dans la bio (
 |---|---|
 | Fond | noir bleuté `#05060a` |
 | Accents | cyan `#22e8ff`, magenta `#ff2bd6` |
-| Logo | KASHING en chrome, police Unbounded Black |
-| Infos | JetBrains Mono (titre, BPM) |
+| Nom | KASHING en chrome, police Tourney (italique, graisse 900) |
+| Infos | JetBrains Mono (titre, handle) |
 | Emblème | le logo KASHING (triangle d'acier, disque doré, scanner rouge K2000), présent dans **chaque** visuel |
 
-Règles : jamais de visage ni de peau reconnaissable, au plus une phrase à l'écran, le masque toujours
-au même endroit (centre) pour qu'on le reconnaisse en scrollant.
+Règles : pas de visage de KASHING, au plus une phrase à l'écran, le logo toujours au même endroit
+(en haut ou au centre) pour qu'on le reconnaisse en scrollant. Les photos d'ambiance (foule, scène)
+sont bienvenues ; si elles sont générées par IA, étiquette « Info IA ».
 
 ## Deux canaux, deux rôles
 
@@ -70,7 +71,7 @@ Ce qui fait la différence :
 - **Un vrai visuel animé**, qui réagit au son (c'est ce que fait le générateur), plutôt qu'une image fixe.
 - **De la personnalité dans les textes** : une description écrite par toi pour chaque morceau
   (d'où il vient, ce qu'il raconte), et pas un modèle copié-collé.
-- **Le masque comme fil conducteur** : une identité reconnaissable donne de la cohérence à la chaîne.
+- **Le logo comme fil conducteur** : une identité reconnaissable donne de la cohérence à la chaîne.
 - **Transparence** : une ligne dans la description de la chaîne, « musique créée avec Suno, écrite et
   dirigée par Kashing ». La case « contenu altéré ou synthétique » de YouTube vise surtout les contenus
   réalistes (visages, voix de vraies personnes) ; dans le doute, la cocher ne pénalise pas la vidéo.
@@ -115,15 +116,15 @@ que ceux qui le vivent se reconnaissent.
 - Les Reels de cette série gardent la même direction visuelle que les autres. C'est le son et
   les titres qui portent le sujet, pas l'image.
 
-## Campagne « SOUS LE MASQUE » — 6 semaines
+## Campagne « FEEL THE DROP » — 6 semaines
 
-### Semaine 1 : teasing (aucune musique)
+### Semaine 1 : teasing (aucune track entière)
 | Jour | Format | Contenu |
 |---|---|---|
-| L | 3 posts en mosaïque | Le masque découpé sur 3 posts côte à côte, qui forment une seule image dans la grille |
-| Me | Reel 7 s | Écran noir, un kick, les yeux du masque s'allument. Texte : « Bientôt. » |
-| V | Reel 10 s | Lasers qui balayent, le masque apparaît. Texte : « Personne ne sait qui c'est. » |
-| Stories | quotidien | Sondage « Frenchcore ou Uptempo ? », compte à rebours vers le lancement |
+| L | 3 posts en mosaïque | Le logo découpé sur 3 posts côte à côte, qui forment une seule image dans la grille |
+| Me | Reel 7 s | Écran noir, un kick, le scanner rouge s'allume dans le logo. Texte : « Feel the drop. » |
+| V | Reel 10 s | La foule dans le noir, le logo apparaît sur le premier kick. Texte : « Soon. » |
+| Stories | quotidien | Sondage « Frenchcore ou Hardbass ? », compte à rebours vers le lancement |
 
 ### Semaines 2 et 3 : lancement
 - **4 Reels visualizer par semaine** (lun, mer, ven, dim, entre 18 h et 20 h), chacun sur le drop d'une track.
@@ -131,8 +132,7 @@ que ceux qui le vivent se reconnaissent.
 - Chaque Reel renvoie au site (« track complète en bio »).
 
 ### Semaines 4 et 5 : engagement
-- **« Qui est KASHING ? »** : un indice par semaine en story (ville, DAW, première track).
-  Le mystère alimente la curiosité, mais ne révèle jamais rien.
+- **« Pick the next drop »** : en story, 2 extraits de 10 s, le public vote pour le prochain Reel.
 - **Défi kick** : un Reel où le kick est isolé, puis « fais ton edit et identifie @kashingguudenoff ».
   On repartage les meilleures réponses.
 - Contacter 5 à 10 **pages de repost Frenchcore et Uptempo** en leur envoyant le meilleur clip.
@@ -158,7 +158,7 @@ que ceux qui le vivent se reconnaissent.
 ### Format A — Visualizer automatique (pour toutes les tracks)
 Généré avec `tools/make_clip.py` : 1080x1920, 20 s, démarre sur le drop.
 - La première seconde doit déjà frapper : on commence **sur** le drop, pas avant.
-- Titre et BPM restent au-dessus de la zone couverte par la légende Instagram.
+- Titre et handle restent au-dessus de la zone couverte par la légende Instagram.
 - Couverture du Reel : l'image `.jpg` exportée avec `--cover`.
 - Si la détection du drop se trompe (master très compressé) : `--start 62.5`.
 
@@ -166,35 +166,33 @@ Généré avec `tools/make_clip.py` : 1080x1920, 20 s, démarre sur le drop.
 Outils : Runway, Kling, Luma ou Sora (abonnement de ton côté). Je ne peux pas générer
 la vidéo moi-même, j'écris les prompts et le découpage.
 
-**Fiche personnage, à coller en tête de chaque prompt pour que le masque reste identique d'un plan à l'autre :**
+**Fiche visuelle, à coller en tête de chaque prompt pour que le logo reste identique d'un plan à l'autre :**
 ```
-A mysterious masked DJ. Smooth oval chrome mask, mirror-polished, a dark horizontal
-reflection band at eye level, two angular slit eyes glowing bright cyan (#22e8ff),
-a thin vertical seam down the middle, three short horizontal slots as a mouth.
-Black hooded jacket, black gloves, no skin visible. Never shows a face.
+The KASHING emblem: a brushed steel triangle with riveted corners, a gold disc with two small
+horns in its center, a dark horizontal slot across the disc where a red light sweeps left and right.
+Dark rave atmosphere, haze, cyan and magenta lasers. No identifiable faces in close-up.
 ```
-Ajouter une image de référence du masque (export de `site/mask.svg` ou la couverture d'un clip)
-pour les outils qui l'acceptent.
+Ajouter `assets/kashing_logo.png` comme image de référence pour les outils qui l'acceptent.
 
 **Clip 1 — « Rave en entrepôt »** (15 à 20 s, sur le drop)
-1. `[personnage] standing still in a dark concrete warehouse, thick haze, cyan and magenta laser beams fanning from the ceiling, slow push-in, cinematic, 35mm`
-2. `close-up of the chrome mask, laser reflections sliding across it, eyes flare cyan on each beat`
-3. `wide shot from behind the masked DJ facing a crowd, hands raised, strobe light, lasers sweeping`
+1. `dark concrete warehouse, thick haze, cyan and magenta laser beams fanning from the ceiling, slow push-in, cinematic, 35mm`
+2. `[emblem] hanging above the stage, the red light in its slot sweeping on each beat, laser reflections on the steel`
+3. `wide shot of a crowd from behind, hands raised, strobe light, lasers sweeping`
 4. `extreme close-up, gloved hand slamming a fader on a DJ mixer, sparks of light`
 
 **Clip 2 — « Autoroute de nuit »**
-1. `[personnage] in the passenger seat of a car on a French highway at night, orange tunnel lights strobing across the chrome mask`
+1. `night drive on a French highway, orange tunnel lights strobing across the windshield`
 2. `POV through windshield, tunnel lights turning into cyan and magenta laser streaks, speed`
-3. `the mask turns slowly to camera, eyes ignite`
+3. `[emblem] appears at the end of the tunnel, red light igniting`
 
-**Clip 3 — « Le masque se forge »**
-1. `molten liquid chrome pouring in slow motion on black background, forming an oval mask`
-2. `the chrome mask cooling, two slit eyes cut by a cyan laser`
-3. `the finished mask floating in haze, eyes glowing, laser beams behind`
+**Clip 3 — « La forge »**
+1. `molten gold pouring in slow motion on black background, forming a horned disc`
+2. `a steel triangle cut by sparks, the gold disc set in its center`
+3. `[emblem] floating in haze, red light sweeping, laser beams behind`
 
 **Montage** (CapCut ou Premiere) : à 200 BPM, un temps dure 0,3 s. On coupe tous les 4 temps (1,2 s)
 et sur chaque kick fort pendant le drop. Les plans IA sont mis à l'échelle de la track,
-jamais l'inverse. On termine sur le masque, yeux allumés, avec « KASHING » en chrome.
+jamais l'inverse. On termine sur le logo, scanner allumé, avec « KASHING » dessous.
 
 **Obligation** : Instagram demande d'activer l'étiquette « IA » pour les contenus réalistes générés
 par IA. On l'active systématiquement : c'est une règle de la plateforme, et la découverte après coup
@@ -204,16 +202,16 @@ coûte plus cher que la transparence.
 
 **Reel visualizer**
 ```
-SUGAR SPIKE BLUES — 188 BPM
-Le masque ne parle pas. Le kick, si.
-Track complète en bio.
+SUGAR SPIKE BLUES
+Feel the drop. 🔊
+Full track: link in bio.
 #frenchcore #frenchcoremusic #uptempo #hardcoremusic #rave #kashing
 ```
 
 **Teasing**
 ```
-Personne ne sait qui c'est.
-Bientôt.
+Feel the drop.
+Soon.
 #frenchcore #hardcore #rave
 ```
 

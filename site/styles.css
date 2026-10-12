@@ -107,7 +107,7 @@ canvas, svg { display: block; max-width: 100%; }
 }
 .hero-sub {
   max-width: 520px; margin: 20px 0 0;
-  font: 700 14px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  font: 700 clamp(17px, 1.7vw, 22px)/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase;
 }
 .hero-sub span {
   display: block; margin-top: 8px;
