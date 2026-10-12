@@ -29,7 +29,12 @@ Prérequis : `ffmpeg` et Python 3 avec `numpy`.
 python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --cover                    # un Reel
 python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --format youtube --cover   # clip YouTube
 sh tools/make_all_clips.sh                                                                # tous les Reels
+python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3 --bg assets/ambiance/festival_01.jpg  # Reel sur une photo
 ```
+
+Avec `--bg`, le fond est une photo d'ambiance au format vertical : elle zoome lentement, respire et
+tremble sur les kicks, et le logo se place dans le haut de l'image, qui doit être sombre. Pas de spectre
+ni de lasers dessinés dans ce mode. Si la photo est générée par IA, active l'étiquette « Info IA » sur Instagram.
 
 Le format `youtube` produit un clip 1920x1080 du morceau entier à 24 i/s (environ 9 min de calcul pour
 4 min de musique), avec une miniature 1280x720.

@@ -9,6 +9,7 @@ Usage :
   python3 tools/make_clip.py site/audio/07_Sugar_Spike_Blues.mp3
   python3 tools/make_clip.py track.mp3 --start 62.5 --duration 15 --out clips/x.mp4
   python3 tools/make_clip.py track.mp3 --format youtube --cover   # 16:9, morceau entier
+  python3 tools/make_clip.py track.mp3 --bg assets/ambiance/festival_01.jpg   # Reel sur une photo d'ambiance
 Options utiles : --title "TITRE", --cover (exporte aussi une image de couverture).
 """
 import argparse
@@ -30,6 +31,9 @@ FONTS = ROOT / "tools" / "fonts"
 LAYOUTS = {
     "reel": dict(size=(1080, 1920), fps=30, logo_w=800, logo_cy=790, word_y=180, word_size=190,
                  spec_cy=1280, spec_h=80, title_y=1420, meta_y=1480, title_size=52, meta_size=30),
+    # Reel sur une photo d'ambiance (--bg) : logo dans le haut sombre de l'image, pas de spectre
+    "photo": dict(size=(1080, 1920), fps=30, logo_w=640, logo_cy=400, word_y=650, word_size=110,
+                  title_y=1500, meta_y=1556, title_size=52, meta_size=30),
     "youtube": dict(size=(1920, 1080), fps=24, logo_w=600, logo_cy=452, word_y=40, word_size=120,
                     spec_cy=790, spec_h=50, title_y=930, meta_y=990, title_size=48, meta_size=28),
 }
@@ -133,6 +137,38 @@ def background():
     return ImageChops.add(img, smoke)
 
 
+class PhotoBackground:
+    """Photo d'ambiance en fond : lent zoom avant, coup de zoom et d'éclairage sur le kick.
+
+    La photo est recadrée pour remplir l'écran avec une marge (MARGIN) qui sert au zoom :
+    au zoom maximal, elle est affichée à sa résolution de travail, jamais agrandie davantage.
+    """
+    MARGIN = 1.12
+
+    def __init__(self, path):
+        src = Image.open(path).convert("RGB")
+        bw, bh = int(W * self.MARGIN), int(H * self.MARGIN)
+        k = max(bw / src.width, bh / src.height)
+        src = src.resize((max(bw, round(src.width * k)), max(bh, round(src.height * k))), Image.LANCZOS)
+        left, top = (src.width - bw) // 2, (src.height - bh) // 2
+        self.big = src.crop((left, top, left + bw, top + bh))
+        # assombrit le bas pour lire le titre au-dessus de la légende Instagram
+        y = np.linspace(0, 1, H)[:, None]
+        shade = np.clip((y - 0.66) / 0.2, 0, 1) * 0.7
+        self.shade = Image.fromarray((255 * (1 - shade)).repeat(W, axis=1).astype(np.uint8), "L")
+
+    def render(self, t, duration, kick, punch, shake):
+        zoom = 1 + 0.05 * t / max(duration, 1) + 0.035 * punch      # 1 → ~1.09 au plus, sous MARGIN
+        cw, ch = self.big.width / zoom, self.big.height / zoom
+        cx = min(max(self.big.width / 2 + shake[0], cw / 2), self.big.width - cw / 2)
+        cy = min(max(self.big.height / 2 + shake[1], ch / 2), self.big.height - ch / 2)
+        img = self.big.resize((W, H), Image.BICUBIC, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))
+        level = 0.62 + 0.38 * kick                                   # la photo « respire » avec le kick
+        img = Image.eval(img, lambda v, k=level: int(v * k))
+        black = Image.new("RGB", (W, H))
+        return Image.composite(img, black, self.shade).convert("RGBA")
+
+
 def fit_font(path, text, max_w, start):
     size = start
     while size > 20:
@@ -200,7 +236,7 @@ def spectrum(d, bands):
 
 # --- Rendu -----------------------------------------------------------------
 
-def render(mp3, out, start, duration, title, meta, cover, bpm):
+def render(mp3, out, start, duration, title, meta, cover, bpm, bg_photo=None):
     x = decode(mp3)
     if duration is None:  # morceau entier
         start, duration = 0.0, len(x) / SR
@@ -212,7 +248,9 @@ def render(mp3, out, start, duration, title, meta, cover, bpm):
     kick, spec = features(seg, SR, frames)
     print(f"  segment {start:.1f}s → {start + duration:.1f}s, {frames} images")
 
-    bg = background().convert("RGBA")
+    photo = PhotoBackground(bg_photo) if bg_photo else None
+    bg = None if photo else background().convert("RGBA")
+    rng = np.random.default_rng(7)
     fx = LogoFX(L["logo_w"])
     punch = kick ** 1.5
     texts = text_layer(title, meta)
@@ -231,11 +269,16 @@ def render(mp3, out, start, duration, title, meta, cover, bpm):
     try:
         for f in range(frames):
             t, e = f / FPS, float(kick[f])
-            frame = ImageChops.add(bg, laser_layer(t, e).convert("RGBA"))
+            if photo:
+                # petite secousse de caméra sur les kicks forts uniquement
+                shake = rng.normal(0, 7, 2) * max(0.0, e - 0.75) / 0.25 if e > 0.75 else (0, 0)
+                frame = photo.render(t, duration, e, float(punch[f]), shake)
+            else:
+                frame = ImageChops.add(bg, laser_layer(t, e).convert("RGBA"))
             logo, jump = fx.render(t, bpm, e, float(punch[f]))
             frame.alpha_composite(logo, ((W - logo.width) // 2, L["logo_cy"] - logo.height // 2 - jump))
-            d = ImageDraw.Draw(frame)
-            spectrum(d, spec[f])
+            if not photo:
+                spectrum(ImageDraw.Draw(frame), spec[f])
             frame.alpha_composite(texts)
             rgb = frame.convert("RGB")
             # couverture : un kick fort, avant le flash
@@ -275,14 +318,17 @@ def main():
     ap.add_argument("--out", type=Path)
     ap.add_argument("--start", type=float, help="début en secondes (sinon : drop détecté)")
     ap.add_argument("--duration", type=float, help="durée en secondes (défaut : 20 s en reel, morceau entier en youtube)")
-    ap.add_argument("--format", choices=LAYOUTS, default="reel",
+    ap.add_argument("--format", choices=("reel", "youtube"), default="reel",
                     help="reel = 1080x1920 (Instagram, Shorts) ; youtube = 1920x1080, morceau entier")
     ap.add_argument("--title")
     ap.add_argument("--handle", default="@kashingguudenoff")
+    ap.add_argument("--bg", type=Path, help="photo d'ambiance en fond (Reel uniquement), ex. assets/ambiance/festival_01.jpg")
     ap.add_argument("--cover", action="store_true", help="exporte aussi une couverture .jpg")
     a = ap.parse_args()
     global L, W, H, FPS
-    L = LAYOUTS[a.format]
+    if a.bg and a.format != "reel":
+        ap.error("--bg ne marche qu'en format reel")
+    L = LAYOUTS["photo" if a.bg else a.format]
     W, H = L["size"]
     FPS = L["fps"]
     duration = a.duration if a.duration else (None if a.format == "youtube" else 20)
@@ -292,7 +338,7 @@ def main():
     meta = " · ".join(filter(None, [f"{bpm} BPM" if bpm else None, a.handle]))
     suffix = "" if a.format == "reel" else "_youtube"
     out = a.out or ROOT / "clips" / (a.mp3.stem + suffix + ".mp4")
-    start = render(a.mp3, out, a.start, duration, title, meta, a.cover, bpm or 190)
+    start = render(a.mp3, out, a.start, duration, title, meta, a.cover, bpm or 190, a.bg)
     print(f"  → {out}  (début {start:.1f}s)")
 
 
