@@ -34,7 +34,8 @@ LAYOUTS = {
     # Reel sur une photo d'ambiance (--bg) : logo dans le haut sombre de l'image, pas de spectre
     "photo": dict(size=(1080, 1920), fps=30, logo_w=640, logo_cy=400, word_y=650, word_size=110,
                   title_y=1500, meta_y=1556, title_size=52, meta_size=30),
-    "youtube": dict(size=(1920, 1080), fps=24, logo_w=600, logo_cy=452, word_y=40, word_size=120,
+    # YouTube : pas de spectre, c'est le logo qui porte le rythme
+    "youtube": dict(size=(1920, 1080), fps=24, spectrum=False, logo_w=720, logo_cy=500, word_y=40, word_size=120,
                     spec_cy=790, spec_h=50, title_y=930, meta_y=990, title_size=48, meta_size=28),
 }
 L = LAYOUTS["reel"]
@@ -182,7 +183,7 @@ def fit_font(path, text, max_w, start):
 def text_layer(title, meta):
     layer = Image.new("RGBA", (W, H))
     # wordmark chromé
-    disp = fit_font(FONTS / "Unbounded.ttf", "KASHING", min(880, W - 200), L["word_size"])
+    disp = fit_font(FONTS / "Tourney-BlackItalic.ttf", "KASHING", min(880, W - 200), L["word_size"])
     bbox = disp.getbbox("KASHING")
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
     a = Image.new("L", (W, th + 40))
@@ -277,7 +278,7 @@ def render(mp3, out, start, duration, title, meta, cover, bpm, bg_photo=None):
                 frame = ImageChops.add(bg, laser_layer(t, e).convert("RGBA"))
             logo, jump = fx.render(t, bpm, e, float(punch[f]))
             frame.alpha_composite(logo, ((W - logo.width) // 2, L["logo_cy"] - logo.height // 2 - jump))
-            if not photo:
+            if not photo and L.get("spectrum", True):
                 spectrum(ImageDraw.Draw(frame), spec[f])
             frame.alpha_composite(texts)
             rgb = frame.convert("RGB")
