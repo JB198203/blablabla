@@ -38,29 +38,34 @@ Familles de versions (mêmes paroles, autre instrumentale) : **Jealousy ×3**, *
 Sortie le **vendredi** (clip YouTube complet + Short + Reel), puis 2 à 3 Reels dans la semaine
 (voir le modèle de semaine dans `instagram/README.md`). Les dates partent du téléchargement de novembre.
 
+Titres les plus « bankable » (choix de Kashing) : **Dagga Life**, **Jealousy**, **Bum Bum**,
+**ANYTHING / Sugar Spike Blues**. Ils ouvrent la campagne.
+
 | Semaine | Single (YouTube complet) | Reels / Shorts de la semaine |
 |---|---|---|
 | S0 (avant) | — | Teasers : logo + 7 s de drop, « ADHD Crisis — November » |
-| S1 | **Le Matin C'est Maintenant** | Drop, refrain, format tendance |
-| S2 | **Jealousy** (version gagnante) | **Duel** A/B/C : « 1, 2 ou 3 ? » en commentaire |
-| S3 | **Sugar Spike Blues** | Drop + extrait du long mix |
-| S4 | **Caffeine IV** | Drop, break |
-| S5 | **ANYTHING** (version gagnante) | **Duel** A/B |
-| S6 | **Ten Tabs Open Syndrome** | Drop, refrain |
-| S7 | **Squirrel!** | Drop, « j'étais venu pour quoi déjà ? » |
+| S1 | **Jealousy** (version gagnante) | **Duel** des 3 versions : « 1, 2 ou 3 ? » en commentaire |
+| S2 | **Bum Bum** | Drop, refrain, format tendance |
+| S3 | **Dagga Life** (version gagnante) | **Duel** A/B |
+| S4 | **ANYTHING** | **« Même son, deux vies »** : Sugar Spike Blues (sans paroles) contre ANYTHING (paroles réécrites) |
+| S5 | **Sugar Spike Blues** + le long mix | Drop, extrait du long mix |
+| S6 | **Le Matin C'est Maintenant** | Drop, refrain |
+| S7 | **Caffeine IV** | Drop, break |
 | S8 | **Album complet** : vidéo « ADHD Crisis — Full Album » (1 h 27) + playlist | Best-of des drops |
 | S9 et + | Un titre restant par semaine, dans l'ordre des Reels qui ont le mieux marché | |
 
-Le meilleur titre selon tes écoutes (Le Matin) ouvre, parce qu'il accroche en 2 secondes ;
-Jealousy en S2 profite d'un compte déjà « chaud » et du duel qui fait commenter.
+Jealousy ouvre : trois versions, donc un duel dès la première semaine, et rien qui freine
+l'algorithme. Dagga Life arrive en S3, quand le compte a déjà de l'élan (voir vigilance « drogues »).
+ANYTHING et Sugar Spike Blues sortent l'une après l'autre : la même chanson, d'abord avec les vraies
+paroles, puis la version sans paroles d'origine ; l'histoire se raconte en une phrase dans les légendes.
 
 ## Points de vigilance
 
 - **Références aux drogues et médicaments** (*Dagga Life*, *Cold Turkey Brain*, *Where did I put my concerta?*) :
   Instagram et YouTube recommandent moins les contenus qui parlent de drogue, et YouTube peut limiter
-  la monétisation. Les titres restent tels quels ; on ne les met pas en tête de campagne et les légendes
-  restent neutres (pas de nom de médicament ni de blague sur les produits dans les légendes).
+  la monétisation. Les titres restent tels quels. Pour *Dagga Life*, qui est un titre fort : pas
+  d'image de feuille ou de joint dans le clip ni la miniature, légendes centrées sur le son, pas de
+  hashtag lié au cannabis. Les autres ne passent pas en tête de campagne.
 - **Le nom de l'album** met le TDAH en avant, alors que le fil était jusqu'ici discret. C'est ton choix ;
   les textes de la campagne parlent du son, pas d'un diagnostic.
-- **Covers** : à confirmer pour chaque titre marqué « cover » que les paroles sont bien les tiennes
-  (sinon, droits à vérifier avant YouTube).
+- **Covers** : confirmé, ce sont tes paroles sur une autre instrumentale. Pas de question de droits.
