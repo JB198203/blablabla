@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KASHING — Frenchcore</title>
+  <meta name="description" content="KASHING: Frenchcore, Hardbass, World fusion. Feel the drop.">
+  <meta property="og:title" content="KASHING — Frenchcore">
+  <meta property="og:description" content="Frenchcore, Hardbass, World fusion. Feel the drop.">
+  <meta name="theme-color" content="#05060a">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;900&family=Tourney:ital,wght@1,900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="logo chrome" href="#top" aria-label="KASHING, home">KASHING</a>
+    <nav aria-label="Main navigation">
+      <a href="#music">Music</a>
+      <a href="#sound">The Sound</a>
+    </nav>
+    <a class="btn btn-sm" href="https://www.instagram.com/kashingguudenoff/" rel="noopener">Instagram</a>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="emblem" aria-hidden="true">
+        <img src="logo.webp" alt="" width="720" height="563" fetchpriority="high">
+      </div>
+
+      <h1 class="hero-title chrome">KASHING</h1>
+      <p class="hero-sub">Feel the drop. <span>Frenchcore · Hardbass · World fusion</span></p>
+      <div class="hero-cta">
+        <button class="btn" type="button" id="heroPlay">▶ Listen</button>
+        <a class="btn btn-ghost" href="https://www.instagram.com/kashingguudenoff/" rel="noopener">Follow @kashingguudenoff</a>
+      </div>
+    </section>
+
+    <!-- MUSIC -->
+    <section class="section" id="music">
+      <div class="section-head">
+        <h2 class="h2">Music</h2>
+        <p class="count" id="trackCount"></p>
+      </div>
+
+      <div class="player" id="player">
+        <div class="now">
+          <p class="now-label">Now playing</p>
+          <p class="now-title" id="nowTitle">—</p>
+          <p class="now-meta" id="nowMeta"></p>
+          <div class="versions" id="versions" role="group" aria-label="Versions" hidden></div>
+          <canvas class="wave" id="wave" aria-label="Waveform, click to seek"></canvas>
+          <div class="controls">
+            <button class="ctl" id="prevBtn" type="button" aria-label="Previous track">⏮</button>
+            <button class="ctl ctl-main" id="playBtn" type="button" aria-label="Play">▶</button>
+            <button class="ctl" id="nextBtn" type="button" aria-label="Next track">⏭</button>
+            <span class="time" id="time">0:00 / 0:00</span>
+          </div>
+        </div>
+        <ol class="playlist" id="playlist"></ol>
+        <p class="empty" id="empty" hidden>No tracks yet.</p>
+      </div>
+      <audio id="audio" preload="none"></audio>
+    </section>
+
+    <!-- THE SOUND -->
+    <section class="section manifesto" id="sound">
+      <h2 class="h2">The Sound</h2>
+      <div class="manifesto-body">
+        <p class="big">Built for the drop.</p>
+        <p>Frenchcore and Hardbass made for big rooms and loud speakers, then taken around the world: baile funk, samba, Balkan brass, flamenco, all pushed through a distorted kick.</p>
+        <p class="big">Press play. Turn it up.</p>
+        <p>New tracks land on <a href="https://www.instagram.com/kashingguudenoff/" rel="noopener">Instagram</a> first.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="logo chrome">KASHING</p>
+    <p>Frenchcore · Hardbass · World fusion</p>
+    <p><a href="https://www.instagram.com/kashingguudenoff/" rel="noopener">Instagram</a></p>
+  </footer>
+
+  <script src="audio/tracks.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
