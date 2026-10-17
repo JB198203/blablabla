@@ -39,7 +39,8 @@ Sortie le **vendredi** (clip YouTube complet + Short + Reel), puis 2 à 3 Reels 
 (voir le modèle de semaine dans `instagram/README.md`). Les dates partent du téléchargement de novembre.
 
 Titres les plus « bankable » (choix de Kashing) : **Dagga Life**, **Jealousy**, **Bum Bum**,
-**ANYTHING / Sugar Spike Blues**. Ils ouvrent la campagne.
+**ANYTHING / Sugar Spike Blues**. Ils ouvrent la campagne : **en anglais**, donc le meilleur potentiel
+international. L'essentiel du budget d'énergie (Reels, duels, relances) va sur eux.
 
 | Semaine | Single (YouTube complet) | Reels / Shorts de la semaine |
 |---|---|---|
@@ -49,7 +50,7 @@ Titres les plus « bankable » (choix de Kashing) : **Dagga Life**, **Jealousy**
 | S3 | **Dagga Life** (version gagnante) | **Duel** A/B |
 | S4 | **ANYTHING** | **« Même son, deux vies »** : Sugar Spike Blues (sans paroles) contre ANYTHING (paroles réécrites) |
 | S5 | **Sugar Spike Blues** + le long mix | Drop, extrait du long mix |
-| S6 | **Le Matin C'est Maintenant** | Drop, refrain |
+| S6 | **Le Matin C'est Maintenant** (sortie un **lundi à 7 h**) | Reel « alarme », défi réveil |
 | S7 | **Caffeine IV** | Drop, break |
 | S8 | **Album complet** : vidéo « ADHD Crisis — Full Album » (1 h 27) + playlist | Best-of des drops |
 | S9 et + | Un titre restant par semaine, dans l'ordre des Reels qui ont le mieux marché | |
