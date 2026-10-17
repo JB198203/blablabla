@@ -69,3 +69,21 @@ paroles, puis la version sans paroles d'origine ; l'histoire se raconte en une p
 - **Le nom de l'album** met le TDAH en avant, alors que le fil était jusqu'ici discret. C'est ton choix ;
   les textes de la campagne parlent du son, pas d'un diagnostic.
 - **Covers** : confirmé, ce sont tes paroles sur une autre instrumentale. Pas de question de droits.
+
+## Le Matin C'est Maintenant — l'hymne du réveil
+
+180 BPM, frenchcore hardbass. Concept : **le réveil**.
+
+- **Reel « alarme »** (`python3 tools/make_alarm_reel.py <mp3>`) : écran d'alarme 06:59 qui sonne et vibre,
+  l'heure passe à 07:00 et le drop tombe, puis le logo KASHING. 20 s.
+- **Défi** : « Set it as your alarm. I dare you to stay in bed. » → les gens filment leur réveil avec le
+  son (#LeMatinChallenge). C'est le contenu des autres qui fait tourner le son : il faut que le son
+  Instagram/TikTok soit nommé `KASHING - Le Matin C'est Maintenant`.
+- **Heure de publication** : un **lundi à 7 h 00**.
+- **Clip YouTube** : le clip logo, plus un Short « alarme ».
+
+## Snapchat
+
+Les mêmes fichiers 9:16 (Reels) vont sur **Snapchat Spotlight** (jusqu'à 60 s), en plus d'Instagram,
+TikTok et YouTube Shorts. Public jeune, ton décalé : bon terrain pour Le Matin et Bum Bum.
+Ajouter le lien Snapchat au site quand le compte existe.
